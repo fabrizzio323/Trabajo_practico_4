@@ -6,14 +6,13 @@ public class Carrera {
     private int codigo;
     private String nombre;
     private short cantidadAnios;
-    private String estado;
+    private boolean estado;
     
     public Carrera() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Carrera(int codigo, String nombre, short cantidadAnios, String estado) {
-		super();
+	public Carrera(int codigo, String nombre, short cantidadAnios, boolean estado) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.cantidadAnios = cantidadAnios;
@@ -44,11 +43,11 @@ public class Carrera {
 		this.cantidadAnios = cantidadAnios;
 	}
 
-	public String getEstado() {
+	public boolean getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
     

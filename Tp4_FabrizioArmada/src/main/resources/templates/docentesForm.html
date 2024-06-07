@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http//:www.thymeleaf.org" lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link data-th-href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+
+<body>
+	<header data-th-replace="~{/layouts/header::headerEdit}"></header>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col col-sm-12 col-md-6 col-lg-8">
+				<form data-th-action="${edicion} ? @{/docente/modificar} : @{/docente/guardar}" th:object="${docente}"
+					method="POST">
+					<div class="col mb-3">
+						<label for="legajo">Legajo</label>
+						<input type="text" id="legajo" class="form-control" th:field="*{legajo}"
+							th:disabled="${edicion} ? true : false">
+						<input type="hidden" id="legajo" class="form-control" th:field="*{legajo}" th:if="${edicion}">
+					</div>
+
+					<div class="col mb-3">
+						<label for="nombre">Nombre</label>
+						<input type="text" id="nombre" class="form-control" th:field="*{nombre}">
+					</div>
+					<div class="col mb-3">
+						<label for="apellido">Apellido</label>
+						<input type="text" id="apellido" class="form-control" th:field="*{apellido}">
+					</div>
+					<div class="col mb-3">
+						<label for="email">Email</label>
+						<input type="text" id="email" class="form-control" th:field="*{email}">
+					</div>
+					<div class="col mb-3">
+						<label for="telefono">Telefono</label>
+						<input type="text" id="telefono" class="form-control" th:field="*{telefono}">
+					</div>
+					<p class="text-center"><input type="submit" class="btn btn-warning" th:value="${edicion} ? 'Modificar' : 'Guardar'"></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
