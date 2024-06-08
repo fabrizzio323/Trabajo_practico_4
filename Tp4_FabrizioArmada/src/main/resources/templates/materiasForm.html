@@ -36,18 +36,26 @@
 				</div>
 				<div class="mb-3">
 					<label id="modalidad">Modalidad</label>
-					<select id="modalidad" class="form-control" th:field="*{modalidad}">
+					<select id="modalidad" class="form-select" th:field="*{modalidad}">
 						<option th:value="virtual">virtual</option>
 						<option th:value="presencial">Presencial</option>
 					</select>
 				</div>
 				<div class="mb-3">
 					<label id="docente">Docente</label>
-					<input type="text" id="docente" class="form-control" th:field="*{docente.nombre}">
+					<select id="docente" class="form-select" th:field="*{docente.legajo}">
+						<option data-th-each="d: ${docentes}"
+						        th:value="${d.legajo}"
+								th:text="${d.nombre}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label id="carrera">Carrera</label>
-					<input type="text" id="carrera" class="form-control" th:field="*{carrera}">
+					<select type="text" id="carrera" class="form-select" th:field="*{carrera.codigo}">
+						<option data-th-each="c: ${carreras}"
+						        th:value="${c.codigo}"
+								th:text="${c.nombre}"></option>
+					</select>
 				</div>
 				<p class="text-center"><input type="submit" class="btn btn-warning"
 						th:value="${edicion} ? 'Modificar' : 'Guardar'"></p>
