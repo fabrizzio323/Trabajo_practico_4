@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.collections.ListaCarrera;
 import ar.edu.unju.fi.model.Carrera;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,11 +44,17 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView getGuardarCarrerasPage(@ModelAttribute("carrera") Carrera carrera) {
-		ModelAndView modelView = new ModelAndView("carreras");		
-		carrera.setEstado(true);
-		ListaCarrera.agregarCarrera(carrera);
-		modelView.addObject("carreras", ListaCarrera.listarCarreras());
+	public ModelAndView getGuardarCarrerasPage(@Valid @ModelAttribute("carrera") Carrera carrera, BindingResult result) {
+		ModelAndView modelView;
+		if(result.hasErrors()) {
+			modelView = new ModelAndView("carrerasForm");
+		}else {
+			modelView = new ModelAndView("carreras");
+			carrera.setEstado(true);
+			ListaCarrera.agregarCarrera(carrera);
+			modelView.addObject("carreras", ListaCarrera.listarCarreras());
+		}
+		
 		return modelView;
 	}
 	@GetMapping("/modificar/{codigo}")

@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import ar.edu.unju.fi.collections.ListaAlumno;
 import ar.edu.unju.fi.collections.ListaCarrera;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/alumno")
@@ -35,12 +37,17 @@ public class AlumnoController {
 		return "alumnosForm";
 	}
 	@PostMapping("/guardar")
-	public ModelAndView agregarAlumno(@ModelAttribute("alumno") Alumno alumno) {
-		ModelAndView modelView = new ModelAndView("alumnos");		
+	public ModelAndView agregarAlumno(@Valid @ModelAttribute("alumno") Alumno alumno, BindingResult result) {
+		ModelAndView modelView;
+		if(result.hasErrors()) {
+			modelView = new ModelAndView("alumnosForm");
+		}else {
+		modelView = new ModelAndView("alumnos");
 		ListaAlumno.agregarAlumno(alumno);
 		modelView.addObject("alumnos", ListaAlumno.listarAlumnos());
+		}
 		return modelView;
-	}
+		}
 	
 	@GetMapping("/modificar/{lu}")
 	public String getModificarCarreraPage(Model model, @PathVariable(value="lu") String lu) {
