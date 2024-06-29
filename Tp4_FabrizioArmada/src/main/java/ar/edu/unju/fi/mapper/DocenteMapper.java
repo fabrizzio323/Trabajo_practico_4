@@ -20,12 +20,12 @@ public interface DocenteMapper {
 	@Mapping(source="apellido", target="apellido")
 	@Mapping(source="email", target="email")
 	@Mapping(source="telefono", target="telefono")
-    DocenteDTO toDocenteDto(Docente docente);
+    DocenteDTO CnvertirDocenteADocenteDTO(Docente docente);
 	
 	@InheritConfiguration
-	Docente ToDocente(DocenteDTO DocenteDTO);
+	Docente ConvertirDocenteDTOAdocente(DocenteDTO DocenteDTO);
      
-    List<DocenteDTO> ToDocenteDTOList(List<Docente> docentes);
+    List<DocenteDTO> ConvertirListaDocenteAListaDocenteDTO(List<Docente> docentes);
     
-    List<Docente> ToDocenteList(List<DocenteDTO> docentesDTO);
+    List<Docente> ConvertirListaDocenteDTOAListaDocente(List<DocenteDTO> docentesDTO);
 }

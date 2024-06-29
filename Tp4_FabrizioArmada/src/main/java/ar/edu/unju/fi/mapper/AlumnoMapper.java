@@ -22,12 +22,12 @@ public interface AlumnoMapper {
 	@Mapping(source="fechaNacimiento", target="fechaNacimiento", dateFormat="yyyy-MM-dd")
 	@Mapping(source="domicilio", target="domicilio")
 	@Mapping(source="lu", target="lu")
-	AlumnoDTO ToAlumnoDto(Alumno alumno);
+	AlumnoDTO ConvertirAlumnoAAlumnoDTO(Alumno alumno);
 	
 	@InheritConfiguration
-	Alumno ToAlumno(AlumnoDTO alumnoDTO);
+	Alumno ConvertirAlumnoDTOAAlumno(AlumnoDTO alumnoDTO);
      
-    List<AlumnoDTO> ToAlumnoDTOList(List<Alumno> alumnos);
+    List<AlumnoDTO> convertirListaAlumnoAListaAlumnoDTO(List<Alumno> alumnos);
     
-    List<Alumno> ToAlumnoList(List<AlumnoDTO> alumnosDTO);
+    List<Alumno> CovertirListaAlumnoDTOAlistaAlumno(List<AlumnoDTO> alumnosDTO);
 }

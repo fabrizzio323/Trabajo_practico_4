@@ -20,12 +20,12 @@ public interface MateriaMapper {
 	@Mapping(source="modalidad", target="modalidad")
 	@Mapping(source="docente", target="docente")
 	@Mapping(source="carrera", target="carrera")
-	MateriaDTO toMateriaDTO(Materia materia);
+	MateriaDTO ConvertirMateriaAMateriaDTO(Materia materia);
 	
 	@InheritConfiguration
-	Materia toMateria(MateriaDTO materiaDTO);
+	Materia ConvertirMateriaDTOAMateria(MateriaDTO materiaDTO);
 	
-	List<MateriaDTO> toMateriaDTOList(List<Materia> materias);
+	List<MateriaDTO> ConvertirListaMateriaAListaMateriaDTO(List<Materia> materias);
 	
-	List<Materia> toMateriaList(List<MateriaDTO> materiasDTO);
+	List<Materia> ConvertirListaMateriaDTOAListaMateria(List<MateriaDTO> materiasDTO);
 }
