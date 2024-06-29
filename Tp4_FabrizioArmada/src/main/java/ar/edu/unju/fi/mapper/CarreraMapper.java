@@ -11,7 +11,7 @@ import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.model.Carrera;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public class CarreraMapper {
+public interface CarreraMapper {
 
 	@Mapping(source="codigo", target="codigo")
 	@Mapping(source="nombre", target="nombre")
