@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.collections;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 import ar.edu.unju.fi.model.Carrera;
@@ -50,7 +51,7 @@ public class ListaCarrera {
     		 if(i.getCodigo()==carrera.getCodigo()) {
     			 i.setNombre(carrera.getNombre());
     			 i.setCantidadAnios(carrera.getCantidadAnios());
-    			 i.setEstado(carrera.getEstado());
+    			 i.setEstado(carrera.isEstado());
     		 }else {
     			 System.out.println("Carrera no encontrada");
     		 }
