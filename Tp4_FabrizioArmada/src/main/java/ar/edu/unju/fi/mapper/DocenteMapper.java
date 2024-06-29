@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.mapperDocente;
+package ar.edu.unju.fi.mapper;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
-import ar.edu.unju.fi.docenteDTO.DocenteDTO;
 import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.dto.DocenteDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Docente;
 
