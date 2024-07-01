@@ -11,13 +11,13 @@ import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.model.Carrera;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public class CarreraMapper {
+public interface CarreraMapper {
 
 	@Mapping(source="codigo", target="codigo")
 	@Mapping(source="nombre", target="nombre")
 	@Mapping(source="cantidadAnios", target="cantidadAnios")
 	@Mapping(source="estado", target="estado")
-	CarreraDTO toCarreraDTO(Carrera carrera);
+	CarreraDTO toCarreraDTO(CarreraDTO carrera);
 	
 	@InheritConfiguration
 	Carrera toCarrera(CarreraDTO carreraDTO);

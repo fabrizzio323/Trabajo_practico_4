@@ -50,7 +50,7 @@ public class ListaCarrera {
     		 if(i.getCodigo()==carrera.getCodigo()) {
     			 i.setNombre(carrera.getNombre());
     			 i.setCantidadAnios(carrera.getCantidadAnios());
-    			 i.setEstado(carrera.getEstado());
+    			 i.setEstado(carrera.isEstado());
     		 }else {
     			 System.out.println("Carrera no encontrada");
     		 }
