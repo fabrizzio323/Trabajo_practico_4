@@ -2,7 +2,8 @@ package ar.edu.unju.fi.dto;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.docenteDTO.DocenteDTO;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
