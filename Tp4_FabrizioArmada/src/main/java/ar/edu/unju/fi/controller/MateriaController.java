@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.collections.ListaCarrera;
-import ar.edu.unju.fi.collections.ListaDocente;
-import ar.edu.unju.fi.collections.ListaMateria;
+
 import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.dto.DocenteDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
