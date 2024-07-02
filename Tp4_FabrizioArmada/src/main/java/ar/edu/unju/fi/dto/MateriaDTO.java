@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MateriaDTO {
 
+	private Long id;
 	 private int codigo;
 	 private String nombre;
 	 private String curso;

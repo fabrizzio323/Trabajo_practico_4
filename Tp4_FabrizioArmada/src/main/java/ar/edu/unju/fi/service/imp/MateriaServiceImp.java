@@ -31,8 +31,8 @@ public class MateriaServiceImp implements IMateriaService {
 	}
 
 	@Override
-	public void eliminarMateria(Long codigo) {
-		materiaRepository.deleteById(codigo);
+	public void eliminarMateria(Long id) {
+		materiaRepository.deleteById(id);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class MateriaServiceImp implements IMateriaService {
 	}
 
 	@Override
-	public MateriaDTO buscarMateria(Long codigo) {
-		return materiaMapper.ConvertirMateriaAMateriaDTO(materiaRepository.findById(codigo).get());
+	public MateriaDTO buscarMateria(Long id) {
+		return materiaMapper.ConvertirMateriaAMateriaDTO(materiaRepository.findById(id).get());
 	}
 	
 }

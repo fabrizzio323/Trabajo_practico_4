@@ -8,8 +8,8 @@ public interface ICarreraService {
 
 	public void crearCarrera(CarreraDTO carreraDTO);
 	public List<CarreraDTO> listaCarreras();
-	public void eliminarCarrera(Long codigo);
+	public void eliminarCarrera(Long id);
 	public void modificarCarrera(CarreraDTO carreraDTO)  throws Exception;
-	public CarreraDTO buscarCarrera(Long codigo);
+	public CarreraDTO buscarCarrera(Long id);
 
 }

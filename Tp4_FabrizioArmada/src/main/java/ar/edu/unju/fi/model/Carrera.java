@@ -26,9 +26,10 @@ public class Carrera {
 		
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "C_id")
+		private Long id;
 		@Column(name = "C_codigo")
-    private Long codigo;
-	
+	private int codigo;
 	    @NotBlank(message="Ingrese el nombre")
 	    @Size(min=3, max=20, message="Debe tener entre 3 y 20 caracteres")
 	    @Pattern(regexp="[a-z A-Z]*", message="El nombre solo deben ser letras")
