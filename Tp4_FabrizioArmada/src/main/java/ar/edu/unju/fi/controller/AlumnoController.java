@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,63 +11,67 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unju.fi.collections.ListaAlumno;
-import ar.edu.unju.fi.collections.ListaCarrera;
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
+import ar.edu.unju.fi.service.AlumnoService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/alumno")
 public class AlumnoController {
-    @Autowired
+    /*
+	@Autowired
 	private Alumno alumno;
-    
+    */
+	@Autowired
+	private AlumnoDTO alumnodto;
+	@Autowired
+	private AlumnoService alumnoService;
 	@GetMapping("/listado")
 	public String getAlumnosPage(Model model) {
-		model.addAttribute("alumnos", ListaAlumno.listarAlumnos());
+		model.addAttribute("alumnos", alumnoService.mostrarALumnos());
 		return "alumnos";
 	}
 	
 	@GetMapping("/nuevo")
 	public String getAlumnosFormPage(Model model) {
 		boolean edicion=false;
-		model.addAttribute("alumno", alumno);
+		model.addAttribute("alumno", alumnodto);
 		model.addAttribute("edicion", edicion);
 		return "alumnosForm";
 	}
 	@PostMapping("/guardar")
-	public ModelAndView agregarAlumno(@Valid @ModelAttribute("alumno") Alumno alumno, BindingResult result) {
+	public ModelAndView agregarAlumno(@Valid @ModelAttribute("alumno") AlumnoDTO alumnodto, BindingResult result) {
 		ModelAndView modelView;
 		if(result.hasErrors()) {
 			modelView = new ModelAndView("alumnosForm");
 		}else {
 		modelView = new ModelAndView("alumnos");
-		ListaAlumno.agregarAlumno(alumno);
-		modelView.addObject("alumnos", ListaAlumno.listarAlumnos());
+		alumnoService.crearAlumno(alumnodto);
+		modelView.addObject("alumnos", alumnoService.mostrarALumnos());
 		}
 		return modelView;
 		}
 	
-	@GetMapping("/modificar/{lu}")
-	public String getModificarCarreraPage(Model model, @PathVariable(value="lu") String lu) {
-		Alumno encontrado = new Alumno();
+	@GetMapping("/modificar/{id}")
+	public String getModificarAlumnoPage(Model model, @PathVariable(value="id") Long id) {
+		AlumnoDTO encontrado = new AlumnoDTO();
 		boolean edicion=true;
-		encontrado=ListaAlumno.buscarAlumnos(lu);
+		encontrado=alumnoService.buscarAlumno(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("alumno",encontrado);
 		return "alumnosForm";
 	}
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("alumno") Alumno alumno) {
-		ListaAlumno.modificarAlumno(alumno);
+	public String modificarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnodto) {
+		alumnoService.modificarALumno(alumnodto);
 		return "redirect:/alumno/listado";
 	}
 	
-	@GetMapping("/eliminar/{lu}")
-	public String eliminarCarrera(@PathVariable(value="lu") String lu) {
-		ListaAlumno.borrarAlumnos(lu);
+	@GetMapping("/eliminar/{id}")
+	public String eliminarAlumno(@PathVariable(value="id") Long id) {
+		alumnoService.eliminarALumno(id);
 		return "redirect:/alumno/listado";
 	}
 	
