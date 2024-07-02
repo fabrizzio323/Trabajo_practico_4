@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Component
 public class CarreraDTO {
 
+	private Long id;
 	 private int codigo;
 	 private String nombre;
 	 private short cantidadAnios;

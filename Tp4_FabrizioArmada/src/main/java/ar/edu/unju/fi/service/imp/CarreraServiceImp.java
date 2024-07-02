@@ -31,8 +31,8 @@ public class CarreraServiceImp implements ICarreraService {
 	}
 	
 	@Override
-	public void eliminarCarrera(Long codigo) {
-		carreraRepository.deleteById(codigo);
+	public void eliminarCarrera(Long id) {
+		carreraRepository.deleteById(id);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class CarreraServiceImp implements ICarreraService {
 	}
 
 	@Override
-	public CarreraDTO buscarCarrera(Long codigo) {
-		return carreraMapper.ConvertirCarreraACarreraDTO(carreraRepository.findById(codigo).get());
+	public CarreraDTO buscarCarrera(Long id) {
+		return carreraMapper.ConvertirCarreraACarreraDTO(carreraRepository.findById(id).get());
 	}
 
 }

@@ -8,8 +8,8 @@ public interface IMateriaService {
 
 	public void crearMateria(MateriaDTO materiaDTO);
 	public List<MateriaDTO> listaMateria();
-	public void eliminarMateria(Long codigo);
+	public void eliminarMateria(Long id);
 	public void modificarMateria(MateriaDTO materiaDTO);
-	public MateriaDTO buscarMateria(Long codigo);
+	public MateriaDTO buscarMateria(Long id);
 
 }

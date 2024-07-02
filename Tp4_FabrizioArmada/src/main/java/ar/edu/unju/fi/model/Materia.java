@@ -24,8 +24,10 @@ public class Materia {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "M_id")
+		private Long id;
 	@Column(name = "M_codigo")
-	   	private Long codigo;
+		private int codigo;
 	
 	@Column(name = "M_nombre")
 	   	private String nombre;
