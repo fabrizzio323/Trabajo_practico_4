@@ -1,12 +1,16 @@
 package ar.edu.unju.fi.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -15,29 +19,40 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "carreras")
 @Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name = "CARRERAS")
-@Entity(name = "carrera")
 public class Carrera {
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "C_id")
-		private Long id;
-		@Column(name = "C_codigo")
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "C_id")
+	private Long id;
+	@Column(name = "C_codigo", nullable = false)
 	private int codigo;
-	    @NotBlank(message="Ingrese el nombre")
-	    @Size(min=3, max=20, message="Debe tener entre 3 y 20 caracteres")
-	    @Pattern(regexp="[a-z A-Z]*", message="El nombre solo deben ser letras")
-	    @Column(name = "C_nombre")
-    private String nombre;
-	    @Column(name = "C_cantidadAnios")
-    private short cantidadAnios;
-	    @Column(name = "C_estado")
-    private boolean estado;
-    
+	@NotBlank(message = "Ingrese el nombre")
+	@Size(min = 3, max = 20, message = "Debe tener entre 3 y 20 caracteres")
+	@Pattern(regexp = "[a-z A-Z]*", message = "El nombre solo deben ser letras")
+	@Column(name = "C_nombre", nullable = false)
+	private String nombre;
+	@Column(name = "C_cantidadAnios", nullable = false)
+	private short cantidadAnios;
+	@Column(name = "C_estado", nullable = false)
+	private boolean estado;
+
+	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
+	private List<Materia> materias;
+
+	public Carrera(int codigo, String nombre, short cantidadAnios, boolean estado) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.cantidadAnios = cantidadAnios;
+		this.estado = estado;
+	}
+
 }

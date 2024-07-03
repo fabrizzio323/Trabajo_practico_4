@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.CarreraMapper;
+import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.repository.CarreraRepository;
 import ar.edu.unju.fi.service.ICarreraService;
 
-@Service("carreraServiceMysql")
+@Service
 public class CarreraServiceImp implements ICarreraService {
 
 	@Autowired
@@ -21,23 +22,29 @@ public class CarreraServiceImp implements ICarreraService {
 	
 	@Override
 	public void crearCarrera(CarreraDTO carreraDTO) {
-		carreraRepository.save(carreraMapper.convertirCarreraDTOaCarrera(carreraDTO));
+		Carrera carrera = carreraMapper.convertirCarreraDTOaCarrera(carreraDTO);
+		carrera.setEstado(true);
+		carreraRepository.save(carrera);
 	}
 
 	@Override
 	public List<CarreraDTO> listaCarreras() {
-		List<CarreraDTO> carrerasDTO = carreraMapper.ConvertirListaCarreraAListaCarreraDTO(carreraRepository.findAll());
+		List<CarreraDTO> carrerasDTO = carreraMapper.ConvertirListaCarreraAListaCarreraDTO(carreraRepository.findByEstado(true));
 		return carrerasDTO;
 	}
 	
 	@Override
-	public void eliminarCarrera(Long id) {
-		carreraRepository.deleteById(id);
+	public void eliminarCarrera(CarreraDTO carreraDTO) {
+		Carrera carrera = carreraMapper.convertirCarreraDTOaCarrera(carreraDTO);
+		carrera.setEstado(false);
+		carreraRepository.save(carrera);
 	}
 
 	@Override
-	public void modificarCarrera(CarreraDTO carreraDTO) throws Exception {
-		carreraRepository.save(carreraMapper.convertirCarreraDTOaCarrera(carreraDTO));
+	public void modificarCarrera(CarreraDTO carreraDTO) {
+		Carrera carrera = carreraMapper.convertirCarreraDTOaCarrera(carreraDTO);
+		carrera.setEstado(true);
+		carreraRepository.save(carrera);
 	}
 
 	@Override
