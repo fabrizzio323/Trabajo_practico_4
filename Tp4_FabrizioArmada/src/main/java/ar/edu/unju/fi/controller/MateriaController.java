@@ -45,7 +45,7 @@ public class MateriaController {
 		boolean edicion = false;
 		model.addAttribute("materia", materiaDTO);
 		model.addAttribute("edicion", edicion);
-		model.addAttribute("docentes", iDocenteService.getDocentesNoAsignados());
+		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
 		model.addAttribute("carreras", iCarreraService.listaCarreras());
 		return "materiasForm";
 	}
