@@ -12,17 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.DocenteDTO;
-import ar.edu.unju.fi.model.Carrera;
-import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.DocenteService;
 
 @Controller
 @RequestMapping("/docente")
 public class DocenteController {
-    /*
-	@Autowired
-    private Docente docente;
-	*/
+ 
 	@Autowired
 	private DocenteDTO docentedto;
 	@Autowired	
