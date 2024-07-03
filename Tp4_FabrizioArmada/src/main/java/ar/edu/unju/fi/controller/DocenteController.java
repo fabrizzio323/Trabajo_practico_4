@@ -68,8 +68,9 @@ public class DocenteController {
 	
 	
 	@GetMapping("/eliminar/{id}")
-	public String eliminarCarrera(@PathVariable(value="id") Long id) {
-		docenteService.EliminarDocente(id);
+	public String eliminarCarrera(@PathVariable(value="legajo") Long id) {
+		DocenteDTO docentedto = docenteService.buscarDocente(id);
+		docenteService.EliminarDocente(docentedto);
 		return "redirect:/docente/listado";
 	}
 	
