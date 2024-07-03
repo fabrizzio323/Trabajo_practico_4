@@ -65,13 +65,14 @@ public class AlumnoController {
 	}
 	@PostMapping("/modificar")
 	public String modificarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnodto) {
-		alumnoService.modificarALumno(alumnodto);
+		alumnoService.modificarAlumno(alumnodto);
 		return "redirect:/alumno/listado";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminarAlumno(@PathVariable(value="id") Long id) {
-		alumnoService.eliminarALumno(id);
+		AlumnoDTO alumnodto = alumnoService.buscarAlumno(id);
+		alumnoService.eliminarAlumno(alumnodto);
 		return "redirect:/alumno/listado";
 	}
 	

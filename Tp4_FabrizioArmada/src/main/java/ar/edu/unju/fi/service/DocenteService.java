@@ -8,7 +8,7 @@ import ar.edu.unju.fi.model.Docente;
 public interface DocenteService {
       public void guardarDocente(DocenteDTO docentedto);
       public List<DocenteDTO> mostrarDocentes();
-      public void EliminarDocente(Long id);
+      public void EliminarDocente(DocenteDTO docentedto);
       public void modificarDocente(DocenteDTO docentedto);
       public DocenteDTO buscarDocente(Long id);
        

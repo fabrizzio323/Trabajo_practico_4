@@ -20,9 +20,12 @@ public class DocenteServiceImp implements DocenteService{
 	private DocenteRepository docenteRepository;
 	@Autowired
 	private DocenteMapper docenteMap;
+	
 	@Override
 	public void guardarDocente(DocenteDTO docentedto) {
-		docenteRepository.save(docenteMap.ConvertirDocenteDTOAdocente(docentedto));
+		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
+		docente.setEstado(true);
+		docenteRepository.save(docente);
 	}
 
 	@Override
@@ -31,15 +34,20 @@ public class DocenteServiceImp implements DocenteService{
 		docentesDto = (List<DocenteDTO>) docenteMap.ConvertirListaDocenteAListaDocenteDTO(docenteRepository.findAll());
 		return docentesDto;
 	}
+	
 
 	@Override
-	public void EliminarDocente(Long id) {
-		docenteRepository.deleteById(id);
+	public void EliminarDocente(DocenteDTO docentedto) {
+		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
+		docente.setEstado(false);
+		docenteRepository.save(docente);
 	}
 
 	@Override
 	public void modificarDocente(DocenteDTO docentedto) {
-		docenteRepository.save(docenteMap.ConvertirDocenteDTOAdocente(docentedto));
+		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
+		docente.setEstado(true);
+		docenteRepository.save(docente);
 		
 	}
 
