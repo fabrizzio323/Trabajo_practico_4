@@ -8,7 +8,7 @@ public interface IMateriaService {
 
 	public void crearMateria(MateriaDTO materiaDTO);
 	public List<MateriaDTO> listaMateria();
-	public void eliminarMateria(Long id);
+	public void eliminarMateria(MateriaDTO materiaDTO);
 	public void modificarMateria(MateriaDTO materiaDTO);
 	public MateriaDTO buscarMateria(Long id);
 
