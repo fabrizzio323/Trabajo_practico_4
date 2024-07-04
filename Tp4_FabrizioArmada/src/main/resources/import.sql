@@ -1,0 +1,12 @@
+insert into carreras (C_codigo, C_nombre, C_cantidad_Anios, C_estado) values ('1001', 'APU', 3, b'1');
+insert into carreras (C_codigo, C_nombre, C_cantidad_Anios, C_estado) values ('1002', 'ING_INF', 5, b'1');
+insert into carreras (C_codigo, C_nombre, C_cantidad_Anios, C_estado) values ('1003', 'ING_QUI', 5, b'1');
+insert into alumnos (A_dni, A_nombre, A_apellido, A_email, A_telefono, A_fecha_nacimiento, A_domicilio, A_lu, A_estado) values ('44621357','tropi','tango','tropina@gmail.com','3886532987','02-04-06','calle propina','4917',b'1');
+insert into alumnos (A_dni, A_nombre, A_apellido, A_email, A_telefono, A_fecha_nacimiento, A_domicilio, A_lu, A_estado) values ('44256301','tomas','pepe','tomapepe@gmail.com','3882564872','01-02-02','Calle pepin','4458',b'1');
+insert into alumnos (A_dni, A_nombre, A_apellido, A_email, A_telefono, A_fecha_nacimiento, A_domicilio, A_lu, A_estado) values ('44203369','pepa','pig','pepig@gmail.com','3880235669','99-06-02','calle matambre','4918',b'1');
+insert into docente (D_legajo, D_nombre, D_apellido, D_email, D_telefono, D_estado) values ('1101', 'Lucas', 'cerros', 'Lucasdelcerro@gmail.com','3882635487',b'1');
+insert into docente (D_legajo, D_nombre, D_apellido, D_email, D_telefono, D_estado) values ('1102', 'Lucas', 'cerros', 'Lucasdelcerro@gmail.com','3882635487',b'1');
+insert into docente (D_legajo, D_nombre, D_apellido, D_email, D_telefono, D_estado) values ('1103', 'Lucas', 'cerros', 'Lucasdelcerro@gmail.com','3882635487',b'1');
+insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1111','PE','1er',6,'virtual',b'1',1,2);
+insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1112','Qumica I','1er',7,'Presencial',b'1',2,3);
+insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1111','IA','3er',6,'virtual',b'1',3,1);

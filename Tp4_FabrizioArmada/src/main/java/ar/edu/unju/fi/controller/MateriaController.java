@@ -64,7 +64,7 @@ public class MateriaController {
 		encontrado = iMateriaService.buscarMateria(id);
 		boolean edicion = true;
 		model.addAttribute("materia", encontrado);
-		model.addAttribute("docentes", iDocenteService.getDocentesNoAsignados());
+		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
 		model.addAttribute("carreras", iCarreraService.listaCarreras());
 		model.addAttribute("edicion", edicion);
 		return "materiasForm";

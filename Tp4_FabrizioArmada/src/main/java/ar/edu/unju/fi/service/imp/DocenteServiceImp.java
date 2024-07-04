@@ -3,8 +3,11 @@ package ar.edu.unju.fi.service.imp;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +29,22 @@ public class DocenteServiceImp implements DocenteService{
 	private DocenteMapper docenteMap;
 	@Autowired
 	private MateriaRepository materiaRepository;
+	
+	private static final Log LOGGER = LogFactory.getLog(DocenteServiceImp.class);
+	
 	@Override
 	public void guardarDocente(DocenteDTO docentedto) {
 		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
 		docente.setEstado(true);
 		docenteRepository.save(docente);
+		LOGGER.info("Docente guardado con exito");
 	}
 
 	@Override
 	public List<DocenteDTO> mostrarDocentes() {
 		List<DocenteDTO> docentesDto = new ArrayList<DocenteDTO>();
 		docentesDto = (List<DocenteDTO>) docenteMap.ConvertirListaDocenteAListaDocenteDTO(docenteRepository.findAll());
+		LOGGER.info("Lista de docentes");
 		return docentesDto;
 	}
 	@Override
@@ -65,6 +73,7 @@ public class DocenteServiceImp implements DocenteService{
 		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
 		docente.setEstado(false);
 		docenteRepository.save(docente);
+		LOGGER.info("Docente eliminado con exito");
 	}
 
 	@Override
@@ -72,12 +81,22 @@ public class DocenteServiceImp implements DocenteService{
 		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
 		docente.setEstado(true);
 		docenteRepository.save(docente);
-		
+		LOGGER.info("Modificacion realizada con exito");
 	}
 
 	@Override
 	public DocenteDTO buscarDocente(Long id) {
-		return docenteMap.ConvertirDocenteADocenteDTO(docenteRepository.findById(id).get());
+		Optional<Docente> OpDocente = docenteRepository.findById(id);
+		LOGGER.info("Busqueda en proceso");
+		if(OpDocente.isPresent()) {
+			Docente docente = OpDocente.get();
+			DocenteDTO docentedto = docenteMap.ConvertirDocenteADocenteDTO(docente);
+			LOGGER.info("Busqueda realizada con exito");
+			return docentedto;
+		}else {
+			return null;
+		}
+		
 	}
 
 }

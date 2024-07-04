@@ -28,6 +28,7 @@ public class AlumnoController {
 	private AlumnoDTO alumnodto;
 	@Autowired
 	private AlumnoService alumnoService;
+	
 	@GetMapping("/listado")
 	public String getAlumnosPage(Model model) {
 		model.addAttribute("alumnos", alumnoService.mostrarALumnos());
