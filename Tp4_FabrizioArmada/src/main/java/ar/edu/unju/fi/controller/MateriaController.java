@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.dto.CarreraDTO;
-import ar.edu.unju.fi.dto.DocenteDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.DocenteService;
 import ar.edu.unju.fi.service.ICarreraService;

@@ -38,8 +38,8 @@ public class AlumnoServiceImp implements AlumnoService{
 	public List<AlumnoDTO> mostrarALumnos() {
 		List<AlumnoDTO> alumnosdto = new ArrayList<AlumnoDTO>();
 		alumnosdto = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(alumnoRepositpory.findAll());
-		LOGGER.info("Lista de alumnos");
-		return alumnosdto;
+    LOGGER.info("Lista de alumnos");
+    return alumnosdto;
 	}
 
 	@Override
