@@ -1,7 +1,10 @@
 package ar.edu.unju.fi.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,7 @@ public class MateriaServiceImp implements IMateriaService {
 	@Autowired
 	private MateriaMapper materiaMapper; 
 	
+    private static final Log LOGGER = LogFactory.getLog(AlumnoServiceImp.class);
 	@Override
 	public void crearMateria(MateriaDTO materiaDTO) {
 		Materia materia = materiaMapper.ConvertirMateriaDTOAMateria(materiaDTO);
@@ -41,11 +45,13 @@ public class MateriaServiceImp implements IMateriaService {
 		materia.setDocente(docente);
 		materia.setEstado(true);
 		materiaRepository.save(materia);
+		LOGGER.info("Materia creada con exito");
 	}
 
 	@Override
 	public List<MateriaDTO> listaMateria() {
 		List<MateriaDTO> materiasDTO = materiaMapper.ConvertirListaMateriaAListaMateriaDTO(materiaRepository.findByEstado(true));
+		LOGGER.info("Lista de materias");
 		return materiasDTO;
 	}
 
@@ -56,6 +62,7 @@ public class MateriaServiceImp implements IMateriaService {
 		materia.setDocente(null);
 		materia.setCarrera(null);
 		materiaRepository.save(materia);
+		LOGGER.info("Materia eliminada con exito");
 	}
 
 	@Override
@@ -70,11 +77,21 @@ public class MateriaServiceImp implements IMateriaService {
 		
 		materia.setEstado(true);
 		materiaRepository.save(materia);
+	    LOGGER.info("Materia modificada con exito");
 	}
 
 	@Override
 	public MateriaDTO buscarMateria(Long id) {
-		return materiaMapper.ConvertirMateriaAMateriaDTO(materiaRepository.findById(id).get());
+		Optional<Materia> OpMateria = materiaRepository.findById(id);
+		LOGGER.info("Busqueda en proceso");
+		if(OpMateria.isPresent()) {
+			Materia materia = OpMateria.get();
+			MateriaDTO materiadto = materiaMapper.ConvertirMateriaAMateriaDTO(materia);
+			LOGGER.info("Busqueda con exito");
+			return materiadto;
+		}else{
+			return null;
+		}
 	}
 	
 }
