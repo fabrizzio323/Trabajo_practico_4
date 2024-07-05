@@ -32,23 +32,15 @@ public class Alumno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "A_id")
 	private Long id;
-	@NotBlank(message="Ingrese el dni")
-	@Size(min=8, message="el dni solo tiene 8 numeros")
-	@Pattern(regexp="[0-9]*", message="Solo numeros por favor")
 	@Column(name = "A_dni", nullable = false)
 	private String dni;
-	@NotBlank(message="Ingrese el nombre")
-	@Size(min=3,max=20,message="nombre de entre 3 y 20 caracteres")
-	@Pattern(regexp="[a-z A-Z]*",message="Solo letras")
+	
 	@Column(name = "A_nombre", nullable = false)
    private String nombre;
-	@NotBlank(message="Ingrese el apellido")
-	@Size(min=3,max=20,message="apellido de entre 3 y 20 caracteres")
-	@Pattern(regexp="[a-z A-Z]*",message="Solo letras")
+	
 	@Column(name = "A_apellido", nullable = false)
    private String apellido;
-	@NotBlank(message="Ingrese el email")
-	@Email(message="El correo electronico tiene que ser valido example@gmail.com")
+	
 	@Column(name = "A_email", nullable = false)
    private String email;
 	@Column(name = "A_telefono", nullable = false)

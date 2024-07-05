@@ -23,7 +23,6 @@ public class MateriaDTO {
 	private String modalidad;
 	private DocenteDTO docente;
 	private CarreraDTO carrera;
-	
 	 private String estado;
 	 private List<Alumno> alumnos;
 

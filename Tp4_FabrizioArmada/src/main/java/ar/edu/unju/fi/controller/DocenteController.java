@@ -19,27 +19,27 @@ import ar.edu.unju.fi.service.DocenteService;
 public class DocenteController {
  
 	@Autowired
-	private DocenteDTO docentedto;
+	private DocenteDTO docenteDTO;
 	@Autowired	
 	private DocenteService docenteService;
 	
 	@GetMapping("/listado")
 	public String getDocentePage(Model model) {
          model.addAttribute("docentes",docenteService.mostrarDocentes());
-         return "docentes";
+         return "/docente/docentes";
 	}
 	
 	@GetMapping("/nuevo")
 	public String getDocenteFormPage(Model model) {
 		boolean edicion=false;
-		model.addAttribute("docente",docentedto);
+		model.addAttribute("docente",docenteDTO);
 		model.addAttribute("edicion",edicion);
-		return "docentesForm";
+		return "/docente/docentesForm";
 	}
 	
 	@PostMapping("/guardar")
 	public ModelAndView getGuadarDocentesPage(@ModelAttribute("docente") DocenteDTO docentedto) {
-		ModelAndView modelView = new ModelAndView("docentes");
+		ModelAndView modelView = new ModelAndView("/docente/docentes");
 		docenteService.guardarDocente(docentedto);
 		modelView.addObject("docentes", docenteService.mostrarDocentes());
 		return modelView;
@@ -52,7 +52,7 @@ public class DocenteController {
 		encontrado=docenteService.buscarDocente(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("docente",encontrado);
-		return "docentesForm";
+		return "/docente/docentesForm";
 	}
 	
 	@PostMapping("/modificar")
@@ -63,7 +63,7 @@ public class DocenteController {
 	
 	
 	@GetMapping("/eliminar/{id}")
-	public String eliminarCarrera(@PathVariable(value="legajo") Long id) {
+	public String eliminarCarrera(@PathVariable(value="id") Long id) {
 		DocenteDTO docentedto = docenteService.buscarDocente(id);
 		docenteService.EliminarDocente(docentedto);
 		return "redirect:/docente/listado";

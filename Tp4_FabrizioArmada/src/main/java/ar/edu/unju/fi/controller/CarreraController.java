@@ -28,7 +28,7 @@ public class CarreraController {
 	@GetMapping("/listado")
 	public String getCarrerasPage(Model model){
 		model.addAttribute("carreras",iCarreraService.listaCarreras());
-		return "carreras";
+		return "/carrera/carreras";
 	}
 	 
 	@GetMapping("/nuevo")
@@ -36,16 +36,16 @@ public class CarreraController {
 		boolean edicion=false;
 		model.addAttribute("carrera",carreraDTO);
 		model.addAttribute("edicion",edicion);
-		return "carrerasForm";
+		return "/carrera/carrerasForm";
 	}
 	
 	@PostMapping("/guardar")
 	public ModelAndView getGuardarCarrerasPage(@Valid @ModelAttribute("carrera") CarreraDTO carreraDTO, BindingResult result) {
 		ModelAndView modelView;
 		if(result.hasErrors()) {
-			modelView = new ModelAndView("carrerasForm");
+			modelView = new ModelAndView("/carrera/carrerasForm");
 		}else {
-			modelView = new ModelAndView("carreras");
+			modelView = new ModelAndView("/carrera/carreras");
 			carreraDTO.setEstado("true");
 			iCarreraService.crearCarrera(carreraDTO);
 			modelView.addObject("carreras", iCarreraService.listaCarreras());
@@ -59,15 +59,15 @@ public class CarreraController {
 		encontrado=iCarreraService.buscarCarrera(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("carrera",encontrado);
-		return "carrerasForm";
+		return "/carrera/carrerasForm";
 	}
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreraDTO) throws Exception {
-		iCarreraService.modificarCarrera(carreraDTO);
+	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreradto) throws Exception {
+		iCarreraService.modificarCarrera(carreradto);
 		return "redirect:/carrera/listado";
 	}
 	
-	@GetMapping("/eliminar/{codigo}")
+	@GetMapping("/eliminar/{id}")
 	public String eliminarCarrera(@PathVariable(value="id") Long id) {
 		CarreraDTO carreraEncontradaDTO = iCarreraService.buscarCarrera(id);
 		iCarreraService.eliminarCarrera(carreraEncontradaDTO);

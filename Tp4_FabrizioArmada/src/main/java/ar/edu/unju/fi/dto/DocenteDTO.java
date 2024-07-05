@@ -17,5 +17,5 @@ public class DocenteDTO {
      private String apellido;
      private String email;
      private String telefono;
-     private boolean estado;
+     private String estado;
 }

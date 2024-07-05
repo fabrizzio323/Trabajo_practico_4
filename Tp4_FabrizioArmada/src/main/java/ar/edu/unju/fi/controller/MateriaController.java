@@ -35,7 +35,7 @@ public class MateriaController {
 	@GetMapping("/listado")
 	public String getMateriasPage(Model model) {
 		model.addAttribute("materias", iMateriaService.listaMateria());
-		return "materias";
+		return "/materia/materias";
 	}
 
 	@GetMapping("/nuevo")
@@ -45,7 +45,7 @@ public class MateriaController {
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
 		model.addAttribute("carreras", iCarreraService.listaCarreras());
-		return "materiasForm";
+		return "/materia/materiasForm";
 	}
 
 	@PostMapping("/guardar")
@@ -65,7 +65,7 @@ public class MateriaController {
 		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
 		model.addAttribute("carreras", iCarreraService.listaCarreras());
 		model.addAttribute("edicion", edicion);
-		return "materiasForm";
+		return "/materia/materiasForm";
 	}
 
 	@PostMapping("modificar")

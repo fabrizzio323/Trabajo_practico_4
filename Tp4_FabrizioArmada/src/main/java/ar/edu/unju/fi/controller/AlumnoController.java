@@ -24,7 +24,7 @@ public class AlumnoController {
 	private Alumno alumno;
     */
 	@Autowired
-	private AlumnoDTO alumnodto;
+	private AlumnoDTO alumnoDTO;
 
    @Autowired
 	private AlumnoService alumnoService;
@@ -32,24 +32,24 @@ public class AlumnoController {
 	@GetMapping("/listado")
 	public String getAlumnosPage(Model model) {
 		model.addAttribute("alumnos", alumnoService.mostrarALumnos());
-		return "alumnos";
+		return "/alumno/alumnos";
 	}
 	
 	@GetMapping("/nuevo")
 	public String getAlumnosFormPage(Model model) {
 		boolean edicion=false;
-		model.addAttribute("alumno", alumnodto);
+		model.addAttribute("alumno", alumnoDTO);
 		model.addAttribute("edicion", edicion);
-		return "alumnosForm";
+		return "/alumno/alumnosForm";
 	}
 	@PostMapping("/guardar")
-	public ModelAndView agregarAlumno(@Valid @ModelAttribute("alumno") AlumnoDTO alumnodto, BindingResult result) {
+	public ModelAndView agregarAlumno(@Valid @ModelAttribute("alumno") AlumnoDTO alumnoDTO, BindingResult result) {
 		ModelAndView modelView;
 		if(result.hasErrors()) {
-			modelView = new ModelAndView("alumnosForm");
+			modelView = new ModelAndView("/alumno/alumnosForm");
 		}else {
-		modelView = new ModelAndView("alumnos");
-		alumnoService.crearAlumno(alumnodto);
+		modelView = new ModelAndView("/alumno/alumnos");
+		alumnoService.crearAlumno(alumnoDTO);
 		modelView.addObject("alumnos", alumnoService.mostrarALumnos());
 		}
 		return modelView;
@@ -62,7 +62,7 @@ public class AlumnoController {
 		encontrado=alumnoService.buscarAlumno(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("alumno",encontrado);
-		return "alumnosForm";
+		return "/alumno/alumnosForm";
 	}
 	@PostMapping("/modificar")
 	public String modificarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnodto) {

@@ -23,5 +23,6 @@ public class AlumnoDTO {
        private String fechaNacimiento;
        private String domicilio;
        private String lu;
+       private String estado;
        private List<Materia> materias;
 }
