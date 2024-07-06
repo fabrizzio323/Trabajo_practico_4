@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.service.AlumnoService;
 import jakarta.validation.Valid;
 
@@ -71,10 +73,10 @@ public class AlumnoController {
 	}
 	
 	@GetMapping("/eliminar/{id}")
-	public String eliminarAlumno(@PathVariable(value="id") Long id) {
-		AlumnoDTO alumnodto = alumnoService.buscarAlumno(id);
-		alumnoService.eliminarAlumno(alumnodto);
+	public String eliminarCarrera(@PathVariable(value="id") Long id) {
+		alumnoService.eliminarAlumno(id);
 		return "redirect:/alumno/listado";
 	}
+	
 	
 }

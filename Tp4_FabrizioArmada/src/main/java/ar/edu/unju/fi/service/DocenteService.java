@@ -8,7 +8,7 @@ public interface DocenteService {
       public void guardarDocente(DocenteDTO docentedto);
       public List<DocenteDTO> mostrarDocentes();
       public List<DocenteDTO> mostrarDocentesNoAsignados();
-      public void EliminarDocente(DocenteDTO docentedto);
+      public void EliminarDocente(Long id);
       public void modificarDocente(DocenteDTO docentedto);
       public DocenteDTO buscarDocente(Long id);
        

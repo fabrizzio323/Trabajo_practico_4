@@ -20,8 +20,6 @@
 						<th>Codigo</th>
 						<th>Nombre</th>
 						<th>Curso</th>
-						<th>Cant horas</th>
-						<th>Modalidad</th>
 						<th>Docente</th>
 						<th>Carrera</th>
 						<th>Opciones</th>
@@ -30,13 +28,11 @@
 						<td data-th-text="${m.codigo}"></td>
 						<td data-th-text="${m.nombre}"></td>
 						<td data-th-text="${m.curso}"></td>
-						<td data-th-text="${m.cantidadHoras}"></td>
-						<td data-th-text="${m.modalidad}"></td>
 						<td data-th-text="${m.docente.nombre}"></td>
 						<td data-th-text="${m.carrera.nombre}"></td>
                        <td>
-						 <a class="btn btn-warning" data-th-href="@{/materia/modificar/}+${m.codigo}" role="button">Editar</a>
-						 <a class="btn btn-danger" data-th-href="@{/materia/eliminar/}+${m.codigo}" role="button">Eliminar</a>
+						 <a class="btn btn-warning" data-th-href="@{/materia/modificar/}+${m.id}" role="button">Editar</a>
+						 <a class="btn btn-danger" data-th-href="@{/materia/eliminar/}+${m.id}" role="button">Eliminar</a>
 					   </td>
 					</tr>
 				</table>

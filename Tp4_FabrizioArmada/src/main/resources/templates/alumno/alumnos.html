@@ -21,10 +21,6 @@
 						<th>Nombre</th>
 						<th>Apellido</th>
 						<th>Dni</th>
-						<th>Email</th>
-						<th>Telefono</th>
-						<th>Fecha de nacimiento</th>
-						<th>Domicilio</th>
 						<th>Opciones</th>
 					</tr>
 					<tr data-th-each="a: ${alumnos}">
@@ -32,13 +28,9 @@
 						<td data-th-text="${a.nombre}"></td>
 						<td data-th-text="${a.apellido}"></td>
 						<td data-th-text="${a.dni}"></td>
-						<td data-th-text="${a.email}"></td>
-						<td data-th-text="${a.telefono}"></td>
-						<td data-th-text="${a.fechaNacimiento}"></td>
-						<td data-th-text="${a.domicilio}"></td>
 						<td>
 							<a class="btn btn-warning" data-th-href="@{/alumno/modificar/}+${a.id}" role="button">Editar</a>
-							<a class="btn btn-danger"  data-th-href="@{/alumno/eliminar/}+${a.id}" role="button">Eliminar</a>
+							<a class="btn btn-danger" data-th-href="@{/alumno/eliminar/}+${a.id}" role="button">Eliminar</a>
 						</td>
 					</tr>
 				</table>

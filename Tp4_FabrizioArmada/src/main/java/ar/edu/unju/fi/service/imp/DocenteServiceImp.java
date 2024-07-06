@@ -44,7 +44,7 @@ public class DocenteServiceImp implements DocenteService{
 	@Override
 	public List<DocenteDTO> mostrarDocentes() {
 		List<DocenteDTO> docentesDto = new ArrayList<DocenteDTO>();
-		docentesDto = (List<DocenteDTO>) docenteMap.ConvertirListaDocenteAListaDocenteDTO(docenteRepository.findAll());
+		docentesDto = (List<DocenteDTO>) docenteMap.ConvertirListaDocenteAListaDocenteDTO(docenteRepository.findByEstado(true));
 		LOGGER.info("Lista de docentes");
 		return docentesDto;
 	}
@@ -70,10 +70,10 @@ public class DocenteServiceImp implements DocenteService{
 	
 
 	@Override
-	public void EliminarDocente(DocenteDTO docentedto) {
-		Docente docente = docenteMap.ConvertirDocenteDTOAdocente(docentedto);
-		docente.setEstado(false);
-		docenteRepository.save(docente);
+	public void EliminarDocente(Long id) {
+	    Docente docente = docenteRepository.findById(id).get();
+	    docente.setEstado(false);
+	    docenteRepository.save(docente);
 		LOGGER.info("Docente eliminado con exito");
 	}
 

@@ -54,23 +54,21 @@ public class CarreraController {
 	}
 	@GetMapping("/modificar/{id}")
 	public String getModificarCarreraPage(Model model, @PathVariable(value="id") Long id) {
-		CarreraDTO encontrado = new CarreraDTO();
+		CarreraDTO encontrado = iCarreraService.buscarCarrera(id);
 		boolean edicion=true;
-		encontrado=iCarreraService.buscarCarrera(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("carrera",encontrado);
 		return "/carrera/carrerasForm";
 	}
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreradto) throws Exception {
+	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreradto) {
 		iCarreraService.modificarCarrera(carreradto);
 		return "redirect:/carrera/listado";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminarCarrera(@PathVariable(value="id") Long id) {
-		CarreraDTO carreraEncontradaDTO = iCarreraService.buscarCarrera(id);
-		iCarreraService.eliminarCarrera(carreraEncontradaDTO);
+		iCarreraService.eliminarCarrera(id);
 		return "redirect:/carrera/listado";
 	}
 	
