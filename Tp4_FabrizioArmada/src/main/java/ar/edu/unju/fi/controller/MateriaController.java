@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unju.fi.dto.DocenteDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.DocenteService;
 import ar.edu.unju.fi.service.ICarreraService;
@@ -49,7 +51,7 @@ public class MateriaController {
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO, BindingResult result) {
+	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO) {
 		ModelAndView modelView = new ModelAndView("materias");
 		iMateriaService.crearMateria(materiaDTO);
 		modelView.addObject("materias", iMateriaService.listaMateria());
@@ -58,8 +60,7 @@ public class MateriaController {
 
 	@GetMapping("/modificar/{id}")
 	public String getModificarMateriaPage(Model model, @PathVariable(value = "id") Long id) {
-		MateriaDTO encontrado = new MateriaDTO();
-		encontrado = iMateriaService.buscarMateria(id);
+		MateriaDTO encontrado = iMateriaService.buscarMateria(id);
 		boolean edicion = true;
 		model.addAttribute("materia", encontrado);
 		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
@@ -68,7 +69,7 @@ public class MateriaController {
 		return "/materia/materiasForm";
 	}
 
-	@PostMapping("modificar")
+	@PostMapping("/modificar")
 	public String modificarMateria(@ModelAttribute("materia") MateriaDTO materiaDTO) {
 		iMateriaService.modificarMateria(materiaDTO);
 		return "redirect:/materia/listado";

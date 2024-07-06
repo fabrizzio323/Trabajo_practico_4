@@ -18,19 +18,15 @@
 							<th>Legajo</th>
 							<th>Nombre</th>
 							<th>Apellido</th>
-							<th>Email</th>
-                            <th>Telefono</th>
 							<th>Opciones</th>
 						</tr>
 						<tr data-th-each="d: ${docentes}">
 						 <td data-th-text="${d.legajo}"></td>
 						 <td data-th-text="${d.nombre}"></td>
 					  	 <td data-th-text="${d.apellido}"></td>
-					     <td data-th-text="${d.email}"></td>
-					     <td data-th-text="${d.telefono}"></td> 
 						 <td>
 						 	<a class="btn btn-warning" data-th-href="@{/docente/modificar/}+${d.id}">Editar</a>
-						   <a class="btn btn-danger" data-th-href="@{/docente/eliminar/}+${d.id}" role="button">Eliminar</a>
+						    <a class="btn btn-danger" data-th-href="@{/docente/eliminar/}+${d.id}">Eliminar</a>
 						</td>
 					    </tr>
 					</table>

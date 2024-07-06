@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.DocenteDTO;
-import ar.edu.unju.fi.service.DocenteService;
+import ar.edu.unju.fi.service.imp.DocenteServiceImp;
+
 
 @Controller
 @RequestMapping("/docente")
@@ -21,7 +23,7 @@ public class DocenteController {
 	@Autowired
 	private DocenteDTO docenteDTO;
 	@Autowired	
-	private DocenteService docenteService;
+	private DocenteServiceImp docenteService;
 	
 	@GetMapping("/listado")
 	public String getDocentePage(Model model) {
@@ -47,9 +49,8 @@ public class DocenteController {
 	
 	@GetMapping("/modificar/{id}")
 	public String getModificarDocentesPage(Model model, @PathVariable(value="id") Long id) {
-		DocenteDTO encontrado = new DocenteDTO();
+		DocenteDTO encontrado = docenteService.buscarDocente(id);
 		boolean edicion=true;
-		encontrado=docenteService.buscarDocente(id);
 		model.addAttribute("edicion",edicion);
 		model.addAttribute("docente",encontrado);
 		return "/docente/docentesForm";
@@ -64,8 +65,7 @@ public class DocenteController {
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminarCarrera(@PathVariable(value="id") Long id) {
-		DocenteDTO docentedto = docenteService.buscarDocente(id);
-		docenteService.EliminarDocente(docentedto);
+		docenteService.EliminarDocente(id);
 		return "redirect:/docente/listado";
 	}
 	

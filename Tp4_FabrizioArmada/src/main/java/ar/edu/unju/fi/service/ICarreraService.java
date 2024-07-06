@@ -8,7 +8,7 @@ public interface ICarreraService {
 
 	public void crearCarrera(CarreraDTO carreraDTO);
 	public List<CarreraDTO> listaCarreras();
-	public void eliminarCarrera(CarreraDTO carreraDTO);
+	public void eliminarCarrera(Long id);
 	public void modificarCarrera(CarreraDTO carreraDTO);
 	public CarreraDTO buscarCarrera(Long id);
 

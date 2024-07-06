@@ -41,8 +41,8 @@ public class CarreraServiceImp implements ICarreraService {
 	}
 	
 	@Override
-	public void eliminarCarrera(CarreraDTO carreraDTO) {
-		Carrera carrera = carreraMapper.convertirCarreraDTOaCarrera(carreraDTO);
+	public void eliminarCarrera(Long id) {
+	    Carrera carrera = carreraRepository.findById(id).get();
 		carrera.setEstado(false);
 		carreraRepository.save(carrera);
 		LOGGER.info("Carrera eliminada con exito");
@@ -52,8 +52,8 @@ public class CarreraServiceImp implements ICarreraService {
 	public void modificarCarrera(CarreraDTO carreraDTO) {
 		Carrera carrera = carreraMapper.convertirCarreraDTOaCarrera(carreraDTO);
 		carrera.setEstado(true);
-		carreraRepository.save(carrera);
-		LOGGER.info("Carrera modificada con exito");
+        carreraRepository.save(carrera);
+        LOGGER.info("Carrera modificada con exito");
 	}
 
 	@Override

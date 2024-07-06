@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.apache.juli.logging.Log;
@@ -29,7 +30,6 @@ public class MateriaServiceImp implements IMateriaService {
 
 	@Autowired
 	private MateriaRepository materiaRepository; 
-	
 	@Autowired
 	private MateriaMapper materiaMapper; 
 	
@@ -37,10 +37,8 @@ public class MateriaServiceImp implements IMateriaService {
 	@Override
 	public void crearMateria(MateriaDTO materiaDTO) {
 		Materia materia = materiaMapper.ConvertirMateriaDTOAMateria(materiaDTO);
-		
 		Carrera carrera = carreraRepository.findById(materia.getCarrera().getId()).get();
 		Docente docente = docenteRepository.findById(materia.getDocente().getId()).get();
-		
 		materia.setCarrera(carrera);
 		materia.setDocente(docente);
 		materia.setEstado(true);
@@ -67,14 +65,11 @@ public class MateriaServiceImp implements IMateriaService {
 
 	@Override
 	public void modificarMateria(MateriaDTO materiaDTO) {
-		Materia materia =  materiaMapper.ConvertirMateriaDTOAMateria(materiaDTO);
-		
-		Docente docente = docenteRepository.findById(materia.getCarrera().getId()).get();
-		Carrera carrera = carreraRepository.findById(materia.getCarrera().getId()).get();
-		
+		Materia materia = materiaMapper.ConvertirMateriaDTOAMateria(materiaDTO);
+		Docente docente = docenteRepository.findById(materia.getDocente().getId()).get();
 		materia.setDocente(docente);
-		materia.setCarrera(carrera);
-		
+		Carrera carrera = carreraRepository.findById(materia.getCarrera().getId()).get();
+	    materia.setCarrera(carrera);
 		materia.setEstado(true);
 		materiaRepository.save(materia);
 	    LOGGER.info("Materia modificada con exito");

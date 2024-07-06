@@ -20,7 +20,7 @@ import ar.edu.unju.fi.service.AlumnoService;
 @Service
 public class AlumnoServiceImp implements AlumnoService{
     @Autowired
-    private AlumnoRepository alumnoRepositpory;
+    private AlumnoRepository alumnoRepository;
     @Autowired
     private AlumnoMapper alumnoMap;
     
@@ -30,23 +30,23 @@ public class AlumnoServiceImp implements AlumnoService{
 	public void crearAlumno(AlumnoDTO alumnodto) {
 		Alumno alumno = alumnoMap.ConvertirAlumnoDTOAAlumno(alumnodto);
 		alumno.setEstado(true);
-		alumnoRepositpory.save(alumno);
+		alumnoRepository.save(alumno);
 		LOGGER.info("Alumno creado con exito");
 	}
 
 	@Override
 	public List<AlumnoDTO> mostrarALumnos() {
 		List<AlumnoDTO> alumnosdto = new ArrayList<AlumnoDTO>();
-		alumnosdto = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(alumnoRepositpory.findAll());
+		alumnosdto = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(alumnoRepository.findByEstado(true));
     LOGGER.info("Lista de alumnos");
     return alumnosdto;
 	}
 
 	@Override
-	public void eliminarAlumno(AlumnoDTO alumnodto) {
-		Alumno alumno = alumnoMap.ConvertirAlumnoDTOAAlumno(alumnodto);
+	public void eliminarAlumno(Long id) {
+		Alumno alumno = alumnoRepository.findById(id).get();
 		alumno.setEstado(false);
-		alumnoRepositpory.save(alumno);
+		alumnoRepository.save(alumno);
 		LOGGER.info("Alumno eliminado con exito");
 	}
 
@@ -54,13 +54,13 @@ public class AlumnoServiceImp implements AlumnoService{
 	public void modificarAlumno(AlumnoDTO alumnodto) {
 		Alumno alumno = alumnoMap.ConvertirAlumnoDTOAAlumno(alumnodto);
 		alumno.setEstado(true);
-		alumnoRepositpory.save(alumno);
+		alumnoRepository.save(alumno);
 		LOGGER.info("Alumno modificado con exito");
 	}
 
 	@Override
 	public AlumnoDTO buscarAlumno(Long id) {
-		Optional<Alumno> OpALumno = alumnoRepositpory.findById(id);
+		Optional<Alumno> OpALumno = alumnoRepository.findById(id);
 		LOGGER.info("Busqueda en proceso");
 		if(OpALumno.isPresent()) {
 			Alumno encontrado = OpALumno.get();
