@@ -40,7 +40,7 @@ public class AlumnoServiceImp implements AlumnoService{
 		alumnosdto = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(alumnoRepository.findByEstado(true));
     LOGGER.info("Lista de alumnos");
     return alumnosdto;
-	}
+	} 
 
 	@Override
 	public void eliminarAlumno(Long id) {
