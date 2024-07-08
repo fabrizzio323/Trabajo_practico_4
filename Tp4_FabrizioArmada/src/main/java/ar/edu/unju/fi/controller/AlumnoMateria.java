@@ -35,7 +35,7 @@ public class AlumnoMateria {
 	        return "consultas/alumnosMaterias";
 	    }
 
-	    @PostMapping("/listado")
+	    @PostMapping("/alumnos")
 	    public String filtrarAlumnos(@RequestParam("materia") Long materiaId, Model model) {
 	        MateriaDTO materia = materiaService.buscarMateria(materiaId);
 	        List<AlumnoDTO> alumnos = null;
@@ -45,7 +45,7 @@ public class AlumnoMateria {
 	        List<MateriaDTO> materias = materiaService.listaMateria();
 	        model.addAttribute("materias", materias);
 	        model.addAttribute("alumnos", alumnos);
-	        return "redirect:/filtro/alumnos";
+	        return "consultas/alumnosMaterias";
 	    }
 	    
 }
