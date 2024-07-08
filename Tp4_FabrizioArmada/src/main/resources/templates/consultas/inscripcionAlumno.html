@@ -13,7 +13,7 @@
 			<div class="container bg-body-secondary p-4 p-md-5 mb-4 rounded">
 				<h1 class="h3 mb-3 fw-normal text-center">Inscripción a
 					Materia</h1>
-				<form th:action="@{/registro/inscribir}" method="post">
+				<form th:action="@{/registro/inscripcion}">
 
 					<div class="form-floating mb-3">
 						<select class="form-select" id="alumno" name="alumno"
@@ -24,14 +24,14 @@
 						</select> <label for="alumno">Alumno</label>
 					</div>
 
-					<div class="form-floating mb-3">
+				<!-- 	<div class="form-floating mb-3">
 						<select class="form-select" id="carrera" name="carrera"
 							aria-label="Seleccionar Carrera" required>
 							<option selected disabled>Selecciona una carrera</option>
 							<option th:each="c : ${carreras}" th:value="${c.id}"
 								th:text="${c.nombre}"></option>
 						</select> <label for="carrera">Carrera</label>
-					</div>
+					</div>  -->
 
 					<div class="form-floating mb-3">
 						<select class="form-select" id="materia" name="materia"
@@ -42,7 +42,7 @@
 						</select> <label for="materia">Materia</label>
 					</div>
 
-					<button class="btn btn-primary w-100 py-2" type="submit">Inscribir</button>
+					<a class="btn btn-primary w-100 py-2" >Inscribir</a>
 				</form>
 			</div>
 		</main>
