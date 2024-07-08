@@ -10,7 +10,7 @@
 	</div>
 	<main class="container">
 		<div class="container bg-body-secondary p-4 p-md-5 mb-4 rounded">
-			<form th:action="@{/filtro/alumnos}" method="post" id="filterForm">
+			<form th:action="@{/filtro/alumnos}" method="POST" id="filterForm">
 				<h1 class="h3 mb-3 fw-normal text-center">Filtrar Alumnos por
 					Materia</h1>
 
@@ -35,7 +35,6 @@
 							<th scope="col">DNI</th>
 							<th scope="col">Nombre</th>
 							<th scope="col">Apellido</th>
-							<th scope="col">Carrera</th>
 						</tr>
 					</thead>
 					<tbody id="resultsTable">
@@ -44,7 +43,6 @@
 							<td th:text="${alumno.dni}"></td>
 							<td th:text="${alumno.nombre}"></td>
 							<td th:text="${alumno.apellido}"></td>
-							<td th:text="${alumno.carrera.nombre}"></td>
 						</tr>
 					</tbody>
 				</table>
