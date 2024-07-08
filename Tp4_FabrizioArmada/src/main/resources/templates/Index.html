@@ -1,82 +1,169 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link data-th-href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-	<style>
-		h1,
-		p,
-		li {
-			color: darkblue;
-		}
-
-		footer {
-			margin-top: 20%;
-		}
-
-		h3 {
-			color: white;
-		}
-	</style>
-</head>
-
+	<head data-th-replace="~{/layouts/header :: head}"></head>
 <body>
-	<header data-th-replace="~{/layouts/header::headerEdit}"></header>
-           
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12 col-md-3 col-lg-1">
-				<aside class="mt-3">
-					<nav class="navbar navbar-expand-md navbar-light bg-primary border-right">
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a class="nav-link active" href="https://virtual.unju.edu.ar/bibliotecas/"
-									target="_blank" style="color: white;">Biblioteca</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link"
-									href="https://www.fi.unju.edu.ar/secretarias/sec-academica/calendario-academico.html"
-									target="_blank" style="color: white;">Calendario Académico</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="https://www.fi.unju.edu.ar/telefonos-contactos"
-									target="_blank" style="color: white;">Contacto</a>
-							</li>
-						</ul>
-					</nav>
-				</aside>
-			</div>
-		<div class="col-10 justify-content-center">
-			<img class="img-fluid" src="/img/ingenieria.jpg" alt="Facultad de ing" width="500">
-			</div>
-			<div class="col">
-				<main style="margin-top: 35px;">
-					<div class="row">
-						<div class="col-12 col-md-8 col-lg-5 " style="border: 1px black solid">
-							<p>La Facultad de Ingeniería de Jujuy, una de las unidades académicas de la
-								UniversidaNacional de Jujuy (UNJu),
-								se dedica a la formación de profesionales en diversas disciplinas de la ingeniería.
-								Ubicada en la ciudad de San Salvador de Jujuy, esta facultad tiene como misión
-								proporcionar una educación de alta
-								calidad que combine tanto los conocimientos teóricos como las habilidades prácticas
-								necesarias para enfrentar los
-								desafíos tecnológicos y sociales del siglo XXI.</p>
-						</div>
-						<div class="col-12 col-md-8 col-lg-6" style="border: 1px black solid">
-							<h2>Noticias recientes</h2>
-							<li>Reunión Informativa IngeniaVoz 24/05</li>
-							<li>Jujuy crecio la demanda de video juegos</li>
-							<li>Tres estudiantes jujeños fueron becados para estudiar en Francia</li>
-						</div>
-					</div>
-				</main>
-			</div>
+	<div class="container">
+		<header data-th-replace="~{/layouts/header :: header}"></header>
+		<div class="nav-scroller py-1 mb-3 border-bottom border-top">
+			<nav data-th-replace="~{/layouts/header :: nav}"></nav>
 		</div>
 	</div>
-	<footer data-th-replace="~{/layouts/footer::footerEdit}"></footer>
-	<script data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+	<main class="container">
+		<div
+			class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+			<img id="imgMain" alt="fi-edificio"
+				data-th-src="@{../img/ingenieria.jpg}"> <br>
+			<div class="col-lg-9 px-0">
+				<h1 class="display-4 fst-italic">Facutad de Ingenieria 52 años
+					junto a vos.</h1>
+				<p class="lead my-3">Fundada el 24 de mayo 1972, el pasado
+					martes 24 de mayo de 2022 la Facultad de Ingeniería de la
+					Universidad Nacional de Jujuy celebró su 50° Aniversario rindiendo
+					homenaje a sus fundadores y destacando las acciones de contribución
+					en la formación de profesionales y al crecimiento de la provincia
+					de Jujuy a lo largo de estos años.</p>
+				<p class="lead mb-0">
+					<a href="https://www.fi.unju.edu.ar/institucional/historia.html"
+						target="_blank" class="text-body-emphasis fw-bold">Continuar
+						leyendo...</a>
+				</p>
+			</div>
+		</div>
+
+		<div class="row mb-2">
+			<div class="col-md-6">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div
+						class="col p-4 d-flex flex-column position-static  bg-body-secondary">
+						<h3 class="mb-0">Convocatoria Actividades de Posgrado</h3>
+						<div class="mb-1 text-body-secondary">03 JULIO 2024</div>
+						<a
+							href="https://www.fi.unju.edu.ar/docentes-noticias/4636-convocatoria-actividades-de-posgrado.html"
+							target="_blank"
+							class="icon-link gap-1 icon-link-hover stretched-link">
+							Continuar leyendo...</a>
+					</div>
+					<div class="col-auto d-none d-lg-block">
+						<img class="imgCursos" alt="taller-1"
+							data-th-src="@{../img/curso1.jpeg}">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div
+						class="col p-4 d-flex flex-column position-static  bg-body-secondary">
+						<h3 class="mb-0">Encuentro Académico FI UNJu - UNLP</h3>
+						<div class="mb-1 text-body-secondary">04 JULIO 2024</div>
+						<a
+							href="https://www.fi.unju.edu.ar/noticias-generales/4639-encuentro-academico-entre-la-fi-unju-y-la-unlp.html"
+							target="_blank"
+							class="icon-link gap-1 icon-link-hover stretched-link">
+							Continuar leyendo... </a>
+					</div>
+					<div class="col-auto d-none d-lg-block">
+						<img class="imgCursos" alt="taller-2"
+							data-th-src="@{../img/curso2.jpg}">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row g-5">
+			<div class="col-md-8 bg-body-secondary">
+				<h3 class="pb-4 mb-4 fst-italic border-bottom">Oferta Académica
+				</h3>
+				<article class="blog-post border-bottom">
+					<h2 class="display-5 link-body-emphasis mb-1">INGENIERÍA
+						INFORMÁTICA</h2>
+					<img class="imgcarreras" alt="ingInfo"
+						data-th-src="@{../img/ing-info.jpg}">
+					<p>
+						Duración: 5 Años <br>Director: Esp. Ing. José Humberto Farfán
+						<br>Nivel: Título de Grado <br> Acreditación: Ingeniero
+						en Informática
+					</p>
+					<blockquote>
+						<h3>Objetivos de la carrera</h3>
+						<p>La carrera tiene como objetivo fundamental brindar el
+							conocimiento científico, disciplinar y técnico, que aseguren la
+							eficiencia del graduado en su desempeño profesional, en el
+							ejercicio y aplicación de la informática, certificando,
+							dirigiendo y controlando la calidad de los Sistemas de
+							Información y la Seguridad Informática aplicando los estándares
+							actuales.</p>
+					</blockquote>
+					<h3>Perfil del gradudado</h3>
+					<p>El perfil del graduado de la carrera Ingeniería Informática
+						es el de un profesional con una sólida formación conceptual en
+						contenidos de las Ciencias Básicas, para sustento y desarrollo de
+						las disciplinas específicas y un adecuado manejo de las
+						Tecnologías Básicas y Aplicadas traducido en la aplicación
+						creativa del conocimiento de los principios fundamentales de las
+						diferentes disciplinas en la solución de problemas de ingeniería
+						informática. Desarrolla competencias para la identificación y
+						solución de problemas abiertos de ingeniería, cuyo tratamiento
+						requiera aplicación de los conocimientos de Ciencias Básicas y de
+						las Tecnologías actuales. Está capacitado para la toma de
+						decisiones, la aplicación de técnicas modernas de gestión, y el
+						sentido económico de las decisiones. Está formado para la integrar
+						grupos de trabajos multidisciplinarios y concientizado del rol de
+						la formación y educación contínua, atendiendo a los grandes
+						cambios tecnológicos que se producen. Podrá conducir y administrar
+						los recursos, tanto hardware, humanos, en un marco legal
+						apropiado; analizar e interpretar la realidad informática
+						internacional, nacional, regional y local con una visión
+						prospectiva; contribuir a la solución de problemas de las
+						organizaciones, nacionales e internacionales mediante la
+						aplicación de tecnologías informáticas; contribuir al desarrollo
+						científico y tecnológico de la Región y del País; liderar y
+						asesorar en el desarrollo de proyectos informáticos integrando los
+						recursos tecnológicos de última generación y participar en la
+						definición de políticas y estrategias en el área informática.</p>
+				</article>
+
+				<article class="blog-post border-bottom planEstudio">
+					<h2 class="display-5 link-body-emphasis mb-1">ANALISTA
+						PROGRAMADOR UNIVERSITARIO</h2>
+					<img class="imgcarreras" alt="apu" data-th-src="@{../img/a.jpg}">
+					<p>
+						Duración: 3 Años <br>Directora: Lic. Carolina González <br>Nivel:
+						Título de Pregrado <br> Acreditación: Analista Programador
+						Universitario
+					</p>
+					<h3>Alcances del título</h3>
+					<ul>
+						<li>Programar, documentar, instalar, poner en marcha, operar,
+							modificar, probar, medir, mantener y transformar software en
+							general o incluido en sistemas informáticos.</li>
+						<li>Asistir al Profesional de grado informático en tareas de
+							relevamiento y análisis y diseño de sistemas informáticos de
+							cualquier envergadura.</li>
+						<li>Participar en equipos de trabajo para desarrollo o
+							transferencia tecnológica relacionados con la producción y/o
+							manipulación de software.</li>
+					</ul>
+					<blockquote>
+						<h3>Perfil del Graduado</h3>
+						<ul>
+						<li>Manejar los distintos paradigmas de la programación.</li>
+						<li>Seleccionar y aplicar lenguajes de programación de diferentes características.</li>
+						<li>Desarrollar un pensamiento lógico y estructurado que le permita un correcto y eficiente desempeño en las actividades relacionadas con la programación y administración de datos.</li>
+						<li>Es capaz de interpretar e implementar el diseño de una aplicación.</li>
+					</ul>
+					</blockquote>
+				</article>
+			</div>
+			<div class="col-md-4">
+				<aside data-th-replace="~{/layouts/aside :: aside}"></aside>
+			</div>
+		</div>
+	</main>
+	
+	<script data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"
+		type="text/javascript"></script>
 </body>
 
 </html>

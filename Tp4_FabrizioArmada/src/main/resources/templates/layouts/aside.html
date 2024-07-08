@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head data-th-replace="~{/layouts/header :: head}"></head>
+<body>
+		<aside th:fragment="aside" class="d-none d-lg-block d-md-none">
+			<div class="position-sticky" style="top: 2rem;">
+				<div class="p-4 mb-3 bg-body-secondary rounded">
+					<h4 class="fst-italic">VIDEO DESTACADO</h4>
+					<iframe id="videoRecuerdo"
+						src="https://www.youtube.com/embed/bOTnMhi9_kY?si=zw8XX3lT5wzqPqqc"
+						title="YouTube video player"></iframe>
+				</div>
+	
+				<div class="bg-body-secondary">
+					<h4 class="fst-italic">Destacados</h4>
+					<ul class="list-unstyled">
+						<li><a
+							class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+							href="https://www.bidi.la/"
+							target="_blank"> <img class="imgDestacados" alt="CID"
+								data-th-src="@{/img/CID-Ingenieria.jpeg}">
+								<div class="col-lg-8">
+									<h6 class="mb-0">CID UNJu</h6>
+								</div>
+						</a></li>
+						<li><a
+							class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+							href="https://virtual.unju.edu.ar/bibliotecas/" target="_blank">
+								<img class="imgDestacados" alt="Biblioteca"
+								data-th-src="@{/img/bibliodig.png}">
+								<div class="col-lg-8">
+									<h6 class="mb-0">Bibliotecas Digitales</h6>
+								</div>
+						</a></li>
+						<li><a
+							class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+							href="https://www.fi.unju.edu.ar/secretarias/sec-academica/calendario-academico.html"
+							target="_blank"> <img class="imgDestacados"
+								alt="Calendario" data-th-src="@{/img/calendario.jpg}">
+								<div class="col-lg-8">
+									<h6 class="mb-0">Calendario Académico</h6>
+								</div>
+						</a></li>
+						<li><a
+							class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+							href="https://www.fi.unju.edu.ar/ingreso-facultad-ingenieria.html" target="_blank">
+								<img class="imgDestacados" alt="Ingreso"
+								data-th-src="@{/img/ingreso.png}">
+								<div class="col-lg-8">
+									<h6 class="mb-0">INGRESO 2024</h6>
+								</div>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</aside>
+		<script type="text/javascript"
+		data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

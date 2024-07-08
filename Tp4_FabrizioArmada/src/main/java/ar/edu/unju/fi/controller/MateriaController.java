@@ -36,6 +36,7 @@ public class MateriaController {
 
 	@GetMapping("/listado")
 	public String getMateriasPage(Model model) {
+		model.addAttribute("titulo", "Listado Materias");
 		model.addAttribute("materias", iMateriaService.listaMateria());
 		return "/materia/materias";
 	}
@@ -43,6 +44,7 @@ public class MateriaController {
 	@GetMapping("/nuevo")
 	public String getMateriasFormPage(Model model) {
 		boolean edicion = false;
+		model.addAttribute("titulo", "Nueva Materia");
 		model.addAttribute("materia", materiaDTO);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("docentes", iDocenteService.mostrarDocentesNoAsignados());
