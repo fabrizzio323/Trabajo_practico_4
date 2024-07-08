@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ar.edu.unju.fi.service.AlumnoService;
+
+import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.service.ICarreraService;
 
 
@@ -14,7 +15,7 @@ import ar.edu.unju.fi.service.ICarreraService;
 public class AlumnoCarrera {
 
     @Autowired
-    private AlumnoService iAlumnoService;  
+    private CarreraDTO carreraDTO;  
 
     @Autowired
     private ICarreraService iCarreraService;  

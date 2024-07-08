@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import ar.edu.unju.fi.mapper.AlumnoMapper;
-import ar.edu.unju.fi.mapper.MateriaMapper;
+import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.AlumnoService;
-import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IMateriaService;
 
 @Controller
@@ -22,55 +22,52 @@ import ar.edu.unju.fi.service.IMateriaService;
 public class AlumnoInscripcion {
 
     @Autowired
-    private IMateriaService iMateriaService;
+    private AlumnoService alumnoService;
 
     @Autowired
-    private AlumnoService iAlumnoService;
+    private IMateriaService materiaService;
 
-    @Autowired
-    private ICarreraService iCarreraService; // Asumiendo que tienes un servicio de carrera
+    @GetMapping("/registro/inscribir")
+    public String mostrarFormularioInscripcion(Model model) {
+        List<AlumnoDTO> alumnos = alumnoService.mostrarALumnos();
+        List<MateriaDTO> materias = materiaService.listaMateria();
 
-    @Autowired
-    private AlumnoMapper alumnoMap;
+        model.addAttribute("alumnos", alumnos);
+        model.addAttribute("materias", materias);
 
-    @Autowired
-    private MateriaMapper materiaMap;
-
-    @GetMapping("/formulario")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("alumnos", iAlumnoService.mostrarALumnos());
-        model.addAttribute("carreras", iCarreraService.listaCarreras());
-        model.addAttribute("materias", iMateriaService.listaMateria());
-        return "consultas/inscripcionAlumno"; 
+        return "inscribirAlumno";
     }
 
-    @PostMapping("/inscribir")
-    public String inscribirAlumnoEnMateria(@RequestParam("alumno") Long alumnoId,
-                                           @RequestParam("carrera") Long carreraId,
-                                           @RequestParam("materia") Long materiaId,
-                                           Model model) {
-        // Buscar y mapear alumno
-        Alumno alumno = alumnoMap.ConvertirAlumnoDTOAAlumno(iAlumnoService.buscarAlumno(alumnoId));
-        if (alumno == null) {
-            model.addAttribute("error", "Alumno no encontrado");
-            return "error"; 
-        }
+    @PostMapping("/registro/inscribir")
+    public String inscribirAlumno(@RequestParam("alumno") Long alumnoId, 
+                                  @RequestParam("materia") Long materiaId, 
+                                  Model model) {
+        AlumnoDTO alumnoDTO = alumnoService.buscarAlumno(alumnoId);
+        MateriaDTO materiaDTO = materiaService.buscarMateria(materiaId);
 
-        // Buscar y mapear materia
-        Materia materia = materiaMap.ConvertirMateriaDTOAMateria(iMateriaService.buscarMateria(materiaId));
-        if (materia == null) {
-            model.addAttribute("error", "Materia no encontrada");
-            return "error"; 
-        }
+        // Convertir DTO a entidad
+        Alumno alumno = new Alumno();
+        alumno.setId(alumnoDTO.getId());
+        alumno.setNombre(alumnoDTO.getNombre());
+        alumno.setApellido(alumnoDTO.getApellido());
+        // Agregar otras propiedades si es necesario
 
-        // Inscribir alumno en la materia
+        Materia materia = new Materia();
+        materia.setId(materiaDTO.getId());
+        materia.setNombre(materiaDTO.getNombre());
+        // Agregar otras propiedades si es necesario
+
+        // Agregar la materia a la lista de materias del alumno
+        alumno.getMaterias().add(materia);
+
+        // Agregar el alumno a la lista de alumnos de la materia
         materia.getAlumnos().add(alumno);
-        iMateriaService.crearMateria(materiaMap.ConvertirMateriaAMateriaDTO(materia));
 
-        // Actualizar modelo con datos
-        model.addAttribute("alumnos", iAlumnoService.mostrarALumnos());
-        model.addAttribute("titulo", "AlumnoInscripcion");
+        // Guardar los cambios
+        alumnoService.modificarAlumno(alumnoDTO);
+        materiaService.modificarMateria(materiaDTO);
 
-        return "redirect:/registro/formulario";
+        model.addAttribute("message", "Alumno inscrito exitosamente.");
+        return "inscribirAlumno";
     }
 }
