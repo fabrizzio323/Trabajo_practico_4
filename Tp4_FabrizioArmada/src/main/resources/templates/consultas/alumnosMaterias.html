@@ -11,18 +11,21 @@
 	<main class="container">
 		<div class="container bg-body-secondary p-4 p-md-5 mb-4 rounded">
 			<form th:action="@{/filtro/alumnos}" method="post" id="filterForm">
-        <h1 class="h3 mb-3 fw-normal text-center">Filtrar Alumnos por Materia</h1>
+				<h1 class="h3 mb-3 fw-normal text-center">Filtrar Alumnos por
+					Materia</h1>
 
-        <div class="form-floating mb-3">
-            <select class="form-select" id="floatingMateria" name="materia" aria-label="Seleccionar Materia">
-                <option value="">Selecciona una materia</option>
-                <option th:each="materia : ${materias}" th:value="${materia.id}" th:text="${materia.nombre}"></option>
-            </select>
-            <label for="floatingMateria">Materia</label>
-        </div>
+				<div class="form-floating mb-3">
+					<select class="form-select" id="floatingMateria" name="materia"
+						aria-label="Seleccionar Materia">
+						<option value="">Selecciona una materia</option>
+						<option th:each="materia : ${materias}" th:value="${materia.id}"
+							th:text="${materia.nombre}"></option>
+					</select> <label for="floatingMateria">Materia</label>
+				</div>
 
-        <button class="btn btn-primary w-80 py-2 mx-auto d-block" type="submit">Filtrar</button>
-    </form>
+				<button class="btn btn-primary w-80 py-2 mx-auto d-block"
+					type="submit">Filtrar</button>
+			</form>
 
 			<div class="mt-5" th:if="${alumnos != null}">
 				<h2 class="h4 mb-3 fw-normal text-center">Resultados</h2>
@@ -52,5 +55,4 @@
 	<script data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"
 		type="text/javascript"></script>
 </body>
-
 </html>
