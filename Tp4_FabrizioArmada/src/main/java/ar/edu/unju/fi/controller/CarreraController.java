@@ -27,6 +27,7 @@ public class CarreraController {
 	
 	@GetMapping("/listado")
 	public String getCarrerasPage(Model model){
+		model.addAttribute("titulo","Listado Carreras");
 		model.addAttribute("carreras",iCarreraService.listaCarreras());
 		return "/carrera/carreras";
 	}
@@ -34,6 +35,7 @@ public class CarreraController {
 	@GetMapping("/nuevo")
 	public String getCarrerasFormPage(Model model) {
 		boolean edicion=false;
+		model.addAttribute("titulo", "Nueva Carrera");
 		model.addAttribute("carrera",carreraDTO);
 		model.addAttribute("edicion",edicion);
 		return "/carrera/carrerasForm";

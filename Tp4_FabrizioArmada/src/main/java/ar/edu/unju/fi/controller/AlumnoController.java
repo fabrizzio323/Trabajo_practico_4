@@ -33,6 +33,7 @@ public class AlumnoController {
 	
 	@GetMapping("/listado")
 	public String getAlumnosPage(Model model) {
+		model.addAttribute("titulo","Listado Alumnos");
 		model.addAttribute("alumnos", alumnoService.mostrarALumnos());
 		return "/alumno/alumnos";
 	}
@@ -40,6 +41,7 @@ public class AlumnoController {
 	@GetMapping("/nuevo")
 	public String getAlumnosFormPage(Model model) {
 		boolean edicion=false;
+		model.addAttribute("titulo", "Nuevo Alumno");
 		model.addAttribute("alumno", alumnoDTO);
 		model.addAttribute("edicion", edicion);
 		return "/alumno/alumnosForm";

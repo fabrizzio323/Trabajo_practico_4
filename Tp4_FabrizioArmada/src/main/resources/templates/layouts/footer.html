@@ -1,28 +1,65 @@
 <!DOCTYPE html>
-<html>
-	<body> 
-			<footer data-th-fragment="footerEdit" class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5" style="background-color: deepskyblue;">
-			<div class="col mb-3" ></div>
-			<div class="col mb-3">
-				<h5 style="color:white;">Contactos</h5>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head data-th-replace="~{/layouts/header :: head}"></head>
+<body>
+	<footer th:fragment="footer" class="py-5">
+		<div class="row">
+			<div class="col-6 col-md-2 mb-3 d-none d-md-block">
+				<img class="imgFooter" alt="imgFooter"
+					data-th-src="@{/img/fi-unju-sinfondo.png}">
+			</div>
+
+			<div class="col-6 col-md-2 mb-3">
+				<h5>Enlaces de Interés</h5>
 				<ul class="nav flex-column">
-					<li>Direccion: Ing. Mario Italo Palanca 10, Y4600 San Salvador de Jujuy, Jujuy</li>
-					<li>telefono: 0388 422-1580</li>
-					<li>Email: info@fi.unju.edu.ar</li>
+					<li class="nav-item mb-2"><a data-th-href="@{/principal}"
+						class="nav-link p-0 text-body-secondary">Inicio</a></li>
+					<li class="nav-item mb-2"><a data-th-href="@{/}"
+						class="nav-link p-0 text-body-secondary">Alumno</a></li>
+					<li class="nav-item mb-2"><a data-th-href="@{/}"
+						class="nav-link p-0 text-body-secondary">Materia</a></li>
+					<li class="nav-item mb-2"><a data-th-href="@{/}"
+						class="nav-link p-0 text-body-secondary">Docente</a></li>
+					<li class="nav-item mb-2"><a data-th-href="@{/}"
+						class="nav-link p-0 text-body-secondary">Carrera</a></li>
 				</ul>
-			</div>  
-			<div class="col mb-3">
-				<h5 style="color:white;">Redes sociales</h5>
+			</div>
+
+			<div class="col-12 col-md-2 mb-3">
+				<h5>Redes Sociales</h5>
 				<ul class="nav flex-column">
-				<li><a href="https://www.facebook.com/fiunju/">Facebook</a></li>
-				<li><a href="https://www.youtube.com/channel/UCgS9XJlKKSYI1oJ4lIOo77A">YouTube</a></li>							   
-				<li><a href="https://www.linkedin.com/school/facultad-de-ingenieria-unju">LinKedln</a></li>									
-				<li><a href="https://www.instagram.com/fiunju/">Instagram</a></li>
+					<li class="nav-item mb-2"><a
+						href="https://www.facebook.com/fiunju/?locale=es_LA"
+						target="_blank" class="nav-link p-0 text-body-secondary"><i class="bi bi-facebook"></i> Facebook</a></li>
+					<li class="nav-item mb-2"><a
+						href="https://www.instagram.com/fiunju/?hl=es" target="_blank"
+						class="nav-link p-0 text-body-secondary"><i class="bi bi-instagram"></i> Instagram</a></li>
 				</ul>
-			</div> 
-             <div>
-				<p>&copy; Fabrizio Luciano Armada 2024</p>
-			 </div>
-		</footer>
-	</body>
+			</div>
+
+			<div class="col-md-5 offset-md-1 mb-3  d-none d-md-block text-light">
+				<h5>FACULTAD DE CIENCIAS ECONÓMICAS</h5>
+				<p><span class="material-symbols-outlined">home</span>Ing. Mario Italo Palanca 10, Y4600 San Salvador de Jujuy, Jujuy</p>
+				<p><span class="material-symbols-outlined">info</span>
+					Información en general: <a href="https://www.fi.unju.edu.ar/">https://www.fi.unju.edu.ar/</a>
+				</p>
+				<p><span class="material-symbols-outlined">call</span>
+					Dpto. Alumnos: Teléfono: 0388 422-1580
+				</p>
+				<p><span class="material-symbols-outlined">mail</span>
+					Mail: <a
+						href="info@fi.unju.edu.ar">info@fi.unju.edu.ar</a>
+				</p>
+			</div>
+		</div>
+
+		<div
+			class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+			<p>Copyright &copy; 2024 ARMADA Fabrizio Luciano - JUAREZ María Marta del Milagro - APU -
+				Facultad de Ingeniería - UNJu</p>
+		</div>
+	</footer>
+		<script type="text/javascript"
+		data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
 </html>

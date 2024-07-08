@@ -27,6 +27,7 @@ public class DocenteController {
 	
 	@GetMapping("/listado")
 	public String getDocentePage(Model model) {
+		model.addAttribute("titulo","Listado Docentes");
          model.addAttribute("docentes",docenteService.mostrarDocentes());
          return "/docente/docentes";
 	}
@@ -34,6 +35,7 @@ public class DocenteController {
 	@GetMapping("/nuevo")
 	public String getDocenteFormPage(Model model) {
 		boolean edicion=false;
+		model.addAttribute("titulo", "Nuevo Docente");
 		model.addAttribute("docente",docenteDTO);
 		model.addAttribute("edicion",edicion);
 		return "/docente/docentesForm";
