@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,12 +51,19 @@ public class MateriaController {
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO) {
-		ModelAndView modelView = new ModelAndView("materias");
-		iMateriaService.crearMateria(materiaDTO);
-		modelView.addObject("materias", iMateriaService.listaMateria());
-		return modelView;
+	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO, BindingResult result) {
+	    if (result.hasErrors()) {
+	        ModelAndView modelView = new ModelAndView("/materia/materiasForm");
+	        modelView.addObject("docentes", iDocenteService.mostrarDocentesNoAsignados());
+	        modelView.addObject("carreras", iCarreraService.listaCarreras());
+	        return modelView;
+	    }
+	    iMateriaService.crearMateria(materiaDTO);
+	    ModelAndView modelView = new ModelAndView("redirect:/materia/listado");
+	    modelView.addObject("materias", iMateriaService.listaMateria());
+	    return modelView;
 	}
+
 
 	@GetMapping("/modificar/{id}")
 	public String getModificarMateriaPage(Model model, @PathVariable(value = "id") Long id) {

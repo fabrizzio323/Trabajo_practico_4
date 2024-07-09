@@ -66,9 +66,15 @@ public class AlumnoController {
 		return "/alumno/alumnosForm";
 	}
 	@PostMapping("/modificar")
-	public String modificarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnodto) {
+	public ModelAndView modificarAlumno(@Valid @ModelAttribute("alumno") AlumnoDTO alumnodto, BindingResult result) {
+		ModelAndView modelView;
+		if(result.hasErrors()) {
+			modelView = new ModelAndView("/alumno/alumnosForm");
+		}else {
 		alumnoService.modificarAlumno(alumnodto);
-		return "redirect:/alumno/listado";
+		modelView = new ModelAndView("redirect:/alumno/listado");
+	}
+		return modelView;
 	}
 	
 	@GetMapping("/eliminar/{id}")

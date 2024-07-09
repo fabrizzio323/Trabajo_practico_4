@@ -30,7 +30,7 @@ public class MateriaDTO {
     @Size(min = 1, max = 50, message = "El nombre debe tener entre 1 y 50 caracteres")
 	private String curso;
 	@NotNull(message = "La cantidad de horas no puede ser nula")
-    @Min(value = 0, message = "La cantidad mínima de horas es 0")
+    @Min(value = 1, message = "La cantidad mínima de horas es 0")
     @Max(value = 24, message = "La cantidad máxima de horas es 24")
 	private short cantidadHoras;
 	@NotBlank(message="La modalidad no puede ser nula")

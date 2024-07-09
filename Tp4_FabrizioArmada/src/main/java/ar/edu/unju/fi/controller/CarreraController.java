@@ -63,10 +63,16 @@ public class CarreraController {
 		return "/carrera/carrerasForm";
 	}
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreradto) {
+	public ModelAndView modificarCarrera(@Valid @ModelAttribute("carrera") CarreraDTO carreradto, BindingResult result) {
+		ModelAndView modelView;
+		if(result.hasErrors()) {
+		modelView = new ModelAndView("/carrera/carrerasForm");
+		}else {
 		iCarreraService.modificarCarrera(carreradto);
-		return "redirect:/carrera/listado";
-	}
+		modelView = new ModelAndView("redirect:/carrera/listado");
+		}
+		return modelView;
+		}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminarCarrera(@PathVariable(value="id") Long id) {

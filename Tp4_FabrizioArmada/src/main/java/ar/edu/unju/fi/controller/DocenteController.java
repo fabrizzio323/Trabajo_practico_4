@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.DocenteDTO;
 import ar.edu.unju.fi.service.imp.DocenteServiceImp;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -42,10 +44,16 @@ public class DocenteController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView getGuadarDocentesPage(@ModelAttribute("docente") DocenteDTO docentedto) {
-		ModelAndView modelView = new ModelAndView("/docente/docentes");
-		docenteService.guardarDocente(docentedto);
-		modelView.addObject("docentes", docenteService.mostrarDocentes());
+	public ModelAndView getGuadarDocentesPage(@Valid @ModelAttribute("docente") DocenteDTO docentedto, BindingResult result) {
+         ModelAndView modelView;
+		if(result.hasErrors()) {
+			modelView = new ModelAndView("/docente/docentesForm");
+		}else{
+			modelView = new ModelAndView("/docente/docentes");
+			docenteService.guardarDocente(docentedto);
+			modelView.addObject("docentes", docenteService.mostrarDocentes());	
+		}
+		
 		return modelView;
 	} 
 	
@@ -59,9 +67,15 @@ public class DocenteController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarDocente(@ModelAttribute("docente") DocenteDTO docentedto) {
+	public ModelAndView modificarDocente(@Valid @ModelAttribute("docente") DocenteDTO docentedto, BindingResult result) {
+		ModelAndView modelView;
+		if(result.hasErrors()) {
+			modelView = new ModelAndView("/docente/docentesForm");
+		}else {
 		docenteService.modificarDocente(docentedto);
-		return "redirect:/docente/listado";
+		modelView = new ModelAndView("redirect:/docente/listado");
+		}
+	     return modelView;
 	}
 	
 	
