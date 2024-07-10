@@ -28,21 +28,23 @@
 			</form>
 
 			<div class="mt-5" th:if="${alumnos != null}">
-				<h2 class="h4 mb-3 fw-normal text-center">Resultados</h2>
+				<h2 class="h4 mb-3 fw-normal text-center">Lista de Alumnos por Materia</h2>
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">DNI</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellido</th>
+							<th scope="col" class="bg-dark bg-gradient text-white border-white border-2 text-center">#</th>
+							<th scope="col" class="bg-dark bg-gradient text-white border-white border-2 text-center">DNI</th>
+							<th scope="col" class="bg-dark bg-gradient text-white border-white border-2 text-center">Nombre</th>
+							<th scope="col" class="bg-dark bg-gradient text-white border-white border-2 text-center">Apellido</th>
 						</tr>
 					</thead>
 					<tbody id="resultsTable">
-						<!-- Aquí se insertarán las filas de resultados con Thymeleaf -->
-						<tr th:each="alumno : ${alumnos}">
-							<td th:text="${alumno.dni}"></td>
-							<td th:text="${alumno.nombre}"></td>
-							<td th:text="${alumno.apellido}"></td>
+						<tr th:each="alumno, iterStat : ${alumnos}">
+						<td class="border border-dark text-center"
+								th:text="${iterStat.index + 1}"></td>
+							<td class="border border-dark" th:text="${alumno.dni}"></td>
+							<td class="border border-dark" th:text="${alumno.nombre}"></td>
+							<td class="border border-dark" th:text="${alumno.apellido}"></td>
 						</tr>
 					</tbody>
 				</table>
