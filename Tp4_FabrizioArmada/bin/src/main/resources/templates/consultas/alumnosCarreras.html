@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{/layouts/header :: head}"></head>
+<body>
+	<div class="container">
+		<header data-th-replace="~{/layouts/header :: header}"></header>
+		<div class="nav-scroller py-1 mb-3 border-bottom border-top">
+			<nav data-th-replace="~{/layouts/header :: nav}"></nav>
+		</div>
+	</div>
+	<main class="container">
+		<div class="container bg-body-secondary p-4 p-md-5 mb-4 rounded">
+			<form data-th-action="@{/consulta/alumnosPorCarrera}" method="post">
+				<h1 class="h3 mb-3 fw-normal text-center ">Consultar Alumnos
+					por Carrera</h1>
+
+				<div class="form-floating mb-3">
+					<select class="form-select" id="carreraId" name="carreraId"
+						aria-label="Seleccionar Carrera">
+						<option selected disabled>Selecciona una carrera</option>
+						<option th:each="carrera : ${carreras}" th:value="${carrera.id}"
+							th:text="${carrera.nombre}"></option>
+					</select> <label for="carreraId">Carrera</label>
+				</div>
+
+				<button class="btn btn-primary w-80 py-2 mx-auto d-block" type="submit">Consultar</button>
+
+			</form>
+
+			<div class="mt-5" th:if="${alumnos != null}">
+				<h2 class="h4 mb-3 fw-normal text-center">Resultados</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">DNI</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Carrera</th>
+						</tr>
+					</thead>
+					<tbody id="resultsTable">
+						<!-- Aquí se insertarán las filas de resultados con Thymeleaf -->
+						<tr th:each="alumno : ${alumnos}">
+							<td th:text="${alumno.dni}"></td>
+							<td th:text="${alumno.nombre}"></td>
+							<td th:text="${alumno.apellido}"></td>
+							<td th:text="${alumno.carrera.nombre}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+	<footer data-th-replace="~{/layouts/footer :: footer}"></footer>
+	<script data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"
+		type="text/javascript"></script>
+</body>
+
+</html>
