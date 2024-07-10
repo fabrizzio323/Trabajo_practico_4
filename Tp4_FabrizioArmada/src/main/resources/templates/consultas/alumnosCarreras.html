@@ -10,6 +10,8 @@
 	</div>
 	<main class="container">
 		<div class="container bg-body-secondary p-4 p-md-5 mb-4 rounded">
+			<h1 class="h3 mb-3 fw-normal text-center">Filtrar Alumnos por
+				Carrera</h1>
 			<form data-th-action="@{/consulta/alumnosPorCarrera}" method="post">
 				<div class="form-floating mb-3">
 					<select class="form-select" id="carreraId" name="carrera"
@@ -25,20 +27,27 @@
 			</form>
 
 			<div class="mt-5" th:if="${alumnos != null}">
-				<h2 class="h4 mb-3 fw-normal text-center">Resultados</h2>
+				<h2 class="h4 mb-3 fw-normal text-center">Listado de Alumnos
+					por Carrera</h2>
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">DNI</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellido</th>
+							<th scope="col" class="bg-dark bg-gradient text-white border-white border-2 text-center">#</th>
+							<th scope="col"
+								class="bg-dark bg-gradient text-white border-white border-2 text-center">DNI</th>
+							<th scope="col"
+								class="bg-dark bg-gradient text-white border-white border-2 text-center">Nombre</th>
+							<th scope="col"
+								class="bg-dark bg-gradient text-white border-white border-2 text-center">Apellido</th>
 						</tr>
 					</thead>
 					<tbody id="resultsTable">
-						<tr th:each="alumno : ${alumnos}">
-							<td th:text="${alumno.dni}"></td>
-							<td th:text="${alumno.nombre}"></td>
-							<td th:text="${alumno.apellido}"></td>
+						<tr th:each="alumno, iterStat : ${alumnos}">
+							<td class="border border-dark text-center"
+								th:text="${iterStat.index + 1}"></td>
+							<td class="border border-dark" th:text="${alumno.dni}"></td>
+							<td class="border border-dark" th:text="${alumno.nombre}"></td>
+							<td class="border border-dark" th:text="${alumno.apellido}"></td>
 						</tr>
 					</tbody>
 				</table>

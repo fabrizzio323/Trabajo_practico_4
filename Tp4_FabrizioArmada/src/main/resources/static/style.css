@@ -9,6 +9,17 @@ body {
 	background-size: 15%;
 }
 
+.navbar{
+	background:#154360 !important;
+}
+
+.navbar-brand{
+	color: white !important;	
+}
+
+.nav-link{
+	color: white !important;
+}
 .imgLogoUnju {
 	width: 50%;
 	height: auto;
@@ -129,5 +140,5 @@ footer {
 .form {
 	margin-left: 2vw;
 	padding-top: 2vw;
-	padding-bottom: 2vw;
+	padding-bottom: 0;
 }
