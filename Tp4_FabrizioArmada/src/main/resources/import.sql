@@ -36,7 +36,7 @@ insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_e
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1113','IA','3er',6,'virtual',b'1',3,2);
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1114','Analisis Matematico','1er',6,'Presencial',b'1',4,5);
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1115','Qumica II','1er',7,'Presencial',b'1',5,3);
-insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1116','Fisica I','1er',6,'Presencial',b'1',6,2)
+insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1116','Fisica I','1er',6,'Presencial',b'1',6,2);
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1117','Dibujo Tecnico','1er',6,'virtual',b'1',7,10);
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1118','Circuitos I','1er',7,'Presencial',b'1',8,10);
 insert into materias (M_codigo,M_nombre,M_curso,M_cantidad_horas,M_modalidad,M_estado,D_id,C_id) values ('1119','POO','2er',6,'Presencial',b'1',9,9);
