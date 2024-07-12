@@ -26,7 +26,7 @@ public class AlumnoCarrera {
 
 	@Autowired
 	private MateriaMapper materiaMap;
-	
+
 	@Autowired
 	private AlumnoMapper alumnoMap;
 
@@ -38,22 +38,35 @@ public class AlumnoCarrera {
 	}
 
 	@PostMapping("/alumnosPorCarrera")
-	public String consultarAlumnoCarrera(@RequestParam("carrera") Long carreraId, Model model) {
-	    CarreraDTO carrera = carreraService.buscarCarrera(carreraId);
-	    List<MateriaDTO> materias = null;
-	    List<AlumnoDTO> alumnos = null;
-	    
-	    if (carrera != null) {
-	        materias = materiaMap.ConvertirListaMateriaAListaMateriaDTO(carrera.getMaterias());
-	        alumnos = new ArrayList<>();
-	        for (MateriaDTO materia : materias) {
-	            alumnos.addAll(alumnoMap.convertirListaAlumnoAListaAlumnoDTO(materia.getAlumnos()));
-	        }
-	    }
+	public String consultarAlumnoCarrera(@RequestParam(value = "carrera", required = false) Long carreraId, Model model) {
 	    List<CarreraDTO> carreras = carreraService.listaCarreras();
 	    model.addAttribute("carreras", carreras);
+
+	    if (carreraId == null) {
+	        model.addAttribute("error", "Por favor seleccione una carrera.");
+	        return "consultas/alumnosCarreras";
+	    }
+
+	    CarreraDTO carrera = carreraService.buscarCarrera(carreraId);
+	    if (carrera == null) {
+	        model.addAttribute("error", "Carrera no encontrada.");
+	        return "consultas/alumnosCarreras";
+	    }
+
+	    List<MateriaDTO> materias = materiaMap.ConvertirListaMateriaAListaMateriaDTO(carrera.getMaterias());
+	    List<AlumnoDTO> alumnos = new ArrayList<>();
+	    for (MateriaDTO materia : materias) {
+	        alumnos.addAll(alumnoMap.convertirListaAlumnoAListaAlumnoDTO(materia.getAlumnos()));
+	    }
+	    
+	    if (alumnos.isEmpty()) {
+	        model.addAttribute("error", "No hay alumnos inscriptos a la carrera.");
+	        return "consultas/alumnosCarreras";
+	    }
+
 	    model.addAttribute("materias", materias);
 	    model.addAttribute("alumnos", alumnos);
+
 	    return "consultas/alumnosCarreras";
 	}
 }

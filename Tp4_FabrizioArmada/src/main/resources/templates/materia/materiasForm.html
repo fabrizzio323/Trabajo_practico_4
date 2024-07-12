@@ -115,7 +115,7 @@
 									<p class="form-text text-danger"
 										th:if="${#fields.hasErrors('docente')}" th:errors="*{docente}"></p>>
 									<option data-th-each="d: ${docentes}" th:value="${d.id}"
-										th:text="${d.nombre}"></option>
+										th:text="${d.apellido +' '+ d.nombre}"></option>
 								</select>
 							</div>
 						</div>

@@ -36,16 +36,29 @@ public class AlumnoMateria {
 	    }
 
 	    @PostMapping("/alumnos")
-	    public String filtrarAlumnos(@RequestParam("materia") Long materiaId, Model model) {
-	        MateriaDTO materia = materiaService.buscarMateria(materiaId);
-	        List<AlumnoDTO> alumnos = null;
-	        if (materia != null) {
-	            alumnos = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(materia.getAlumnos());
-	        }
+	    public String filtrarAlumnos(@RequestParam(value = "materia", required = false) Long materiaId, Model model) {
 	        List<MateriaDTO> materias = materiaService.listaMateria();
 	        model.addAttribute("materias", materias);
+
+	        if (materiaId == null) {
+	            model.addAttribute("error", "Por favor seleccione una materia.");
+	            return "consultas/alumnosMaterias";
+	        }
+
+	        MateriaDTO materia = materiaService.buscarMateria(materiaId);
+	        if (materia == null) {
+	            model.addAttribute("error", "Materia no encontrada.");
+	            return "consultas/alumnosMaterias";
+	        }
+
+	        List<AlumnoDTO> alumnos = alumnoMap.convertirListaAlumnoAListaAlumnoDTO(materia.getAlumnos());
+	        if (alumnos.isEmpty()) {
+	            model.addAttribute("error", "No hay alumnos inscriptos en la materia.");
+	            return "consultas/alumnosMaterias";
+	        }
+
 	        model.addAttribute("alumnos", alumnos);
 	        return "consultas/alumnosMaterias";
 	    }
-	    
+
 }
